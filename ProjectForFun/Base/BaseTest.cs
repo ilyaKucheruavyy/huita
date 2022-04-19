@@ -3,7 +3,7 @@ using OpenQA.Selenium;
 
 namespace huita.Base
 {
-    public class BaseTest
+    public class BaseTest : IBaseTest
     {
         public WebDriver Driver { get; set; }
 

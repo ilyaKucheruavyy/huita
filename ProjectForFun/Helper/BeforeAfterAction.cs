@@ -1,29 +1,34 @@
-﻿using huita.Base;
+﻿using BoDi;
+using huita.Base;
 using huita.RuntimeVariables;
+using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
 namespace huita.Helper
 {
+    [Binding]
     public class BeforeAfterAction : BaseTest
     {
-        private readonly WebDriverRuntime _runtimeDriver;
+        private readonly IObjectContainer _container;
 
-        public BeforeAfterAction(WebDriverRuntime runtimeDriver)
+        public BeforeAfterAction(IObjectContainer container)
         {
-            _runtimeDriver = runtimeDriver;
+            _container = container;
         }
 
         [BeforeScenario]
         public void OnStartUp()
         {
             var driverInstance = CreateBrowserDriver();
-            _runtimeDriver.Driver = driverInstance;
+            _container.RegisterInstanceAs(driverInstance);
         }
 
-        [AfterScenario(Order = 0)]
+        [AfterScenario(Order = 100000)]
         public void QuitDriver()
         {
-            _runtimeDriver.Driver.Quit();   
+           var driver = _container.Resolve<WebDriver>();  
+           driver.Close();
+           driver.Dispose();
         }
     }
 }

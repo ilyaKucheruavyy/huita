@@ -3,14 +3,14 @@ using huita.Helper;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-namespace huita.Steps.BaseSteps
+namespace huita.Steps.Base
 {
     [Binding]
-    public class BaseSteps : SpecFlowContext
+    class BaseSteps : SpecFlowContext
     {
-        private readonly WebDriver driver;
+        private readonly WebDriver _driver;
 
-        public BaseSteps(WebDriver _driver)
+        public BaseSteps(WebDriver driver)
         {
             _driver = driver;
         }
@@ -24,7 +24,7 @@ namespace huita.Steps.BaseSteps
                 "globalSqa" => baseUrl = "https://www.globalsqa.com/",
                 _ => throw new Exception($"Environment with name '{urlIdentifier}' doesn't exist")
             };
-            driver.Navigate().GoToUrl(baseUrl);
+            _driver.Navigate().GoToUrl(baseUrl);
         }
 
         [When(@"Navigate to datepicker menu")]
@@ -36,14 +36,14 @@ namespace huita.Steps.BaseSteps
             var DatePickerField = By.CssSelector(".hasDatepicker");
             var Frame = By.CssSelector(".demo-frame.lazyloaded");
 
-            Utilits.MoveToElement(driver, TestersHub);
-            Utilits.MoveToElement(driver, DemoTestingSite);
-            driver.FindElement(DatePickerMenu).Click();
-            driver.ScrollDown(0, 200);
+            Utilits.MoveToElement(_driver, TestersHub);
+            Utilits.MoveToElement(_driver, DemoTestingSite);
+            _driver.FindElement(DatePickerMenu).Click();
+            _driver.ScrollDown(0, 200);
 
-            Utilits.SwitchFrame(driver, Frame);
-            WebDriverExtensions.WaitElement(driver, DatePickerField, 10);
-            driver.FindElement(DatePickerField).Click();
+            Utilits.SwitchFrame(_driver, Frame);
+            WebDriverExtensions.WaitElement(_driver, DatePickerField, 10);
+            _driver.FindElement(DatePickerField).Click();
         }
     }
 }
