@@ -9,30 +9,30 @@ namespace huita.Helper
 {
     public static class Utilits
     { 
-        public static void SelectSomeElementByText(IWebDriver driver, By locator, string searchingText)
+        public static void SelectSomeElementByValue(IWebDriver driver, IWebElement locator, string value)
         {
-            SelectElement selectElement = new(driver.FindElement(locator));
-            selectElement.SelectByText(searchingText);
+            SelectElement selectElement = new(locator);
+            selectElement.SelectByValue(value);
         }
 
-        public static void SwitchFrame(IWebDriver driver, By locator)
+        public static void SwitchFrame(IWebDriver driver, IWebElement locator)
         {
-            IWebElement frame = driver.FindElement(locator);
+            IWebElement frame = locator;
             driver.SwitchTo().Frame(frame); 
         }
 
-        public static void MoveToElementAndClick(IWebDriver driver, By locator)
+        public static void MoveToElementAndClick(IWebDriver driver, IWebElement locator)
         {
             var actions = new Actions(driver);
-            actions.MoveToElement(driver.FindElement(locator))
+            actions.MoveToElement(locator)
                 .Click()
                 .Perform();
         }
 
-        public static void MoveToElement(IWebDriver driver, By locator)
+        public static void MoveToElement(IWebDriver driver, IWebElement locator)
         {
             Actions actions = new (driver);
-            actions.MoveToElement(driver.FindElement(locator))
+            actions.MoveToElement(locator)
                 .Perform();
         }
 
@@ -52,10 +52,10 @@ namespace huita.Helper
             }
         }
 
-        public static void SortedBySomeWorld(IWebDriver driver, By locator, string sortedAllBy)
+        public static void SortedBySomeWorld(IWebDriver driver, List<IWebElement> locator, string sortedAllBy)
         {
 
-            var SortedBy = driver.FindElements(locator)
+            var SortedBy = locator
                 .First(x => x.Text == sortedAllBy);
             SortedBy.Click(); 
         }
@@ -64,6 +64,12 @@ namespace huita.Helper
         {
             IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
            js.ExecuteScript($"var a = document.evaluate('{checkboxIdentifier}', document).iterateNext(); a.click();");
+        }
+
+        public static void ScrollToElementWithJS(IWebDriver driver, string selector)
+        {
+            IJavaScriptExecutor js = (IJavaScriptExecutor)(driver);
+            js.ExecuteScript($"var selectCounry = document.querySelector('{selector}'); selectCounry.scrollIntoView(false);");
         }
     }
 }

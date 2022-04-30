@@ -3,6 +3,8 @@ using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using System;
+using SeleniumExtras.PageObjects;
+using System.Collections.Generic;
 
 namespace huita.Helper
 {
@@ -14,30 +16,23 @@ namespace huita.Helper
 
         }
 
-        public static void WaitElement(this IWebDriver driver, By locator, int second)
+        public static void WaitElement(this IWebDriver driver, IWebElement locator, int second)
         {
-            new WebDriverWait(driver, TimeSpan.FromSeconds(second)).Until(ExpectedConditions.ElementIsVisible(locator));
+            new WebDriverWait(driver, TimeSpan.FromSeconds(second)).Until(ExpectedConditions.ElementIsVisible((By)locator));
             new WebDriverWait(driver, TimeSpan.FromSeconds(second)).Until(ExpectedConditions.ElementToBeClickable(locator));
-            new WebDriverWait(driver, TimeSpan.FromSeconds(second)).Until(ExpectedConditions.ElementIsVisible(locator));
         }
 
-        public static void InputSomeText(this IWebDriver driver, By locator, string text)
+        public static void InputSomeText(this IWebDriver driver, IWebElement locator, string text)
         {
-            driver.FindElement(locator).SendKeys(text); 
+            locator.SendKeys(text); 
             Actions actions = new(driver);
             actions.SendKeys(Keys.Enter).Perform(); 
         }
 
-        public static void ScrollDown(this IWebDriver driver, int xLine, int yLine)
+        public static void ScrollPage(this IWebDriver driver, int xLine, int yLine)
         {
             IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
             js.ExecuteScript($"window.scrollBy({xLine}, {yLine})");
-        }
-
-        public static void CLICK(this IWebDriver driver, By someElement)
-        {
-            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-            js.ExecuteScript("arguments[0].click();", someElement);
         }
     }
 }
