@@ -1,14 +1,11 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium.Support.UI;
 using huita.Helper;
-using SeleniumExtras.WaitHelpers;
 using System;
-using System.Threading;
+using huita.Base;
 
 namespace huita.GlobalSqa
 {
-    class GlobalSqaDatePickerPage : GlobalSqaMainPage
+    class GlobalSqaDatePickerPage : Driver
     {
 
         public GlobalSqaDatePickerPage (IWebDriver driver) : base(driver) { }
@@ -30,7 +27,7 @@ namespace huita.GlobalSqa
             Utilits.MoveToElement(driver, TestersHub);
             Utilits.MoveToElement(driver, DemoTestingSite);
             driver.FindElement(DatePickerMenu).Click();
-            driver.ScrollDown(0, 200);
+            driver.ScrollPage(0, 200);
             
             Utilits.SwitchFrame(driver,Frame);
             WebDriverExtensions.WaitElement(driver, DatePickerField, 10);

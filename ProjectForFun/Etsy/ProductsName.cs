@@ -9,8 +9,5 @@ namespace huita.Etsy
         public static string Frank { get; } = "Невеста Франкенштейна - Борис Карлофф - Film Strip";
 
         public static string Rocky { get; } = "Постер фильма Рокки";
-
-
-
     }
 }

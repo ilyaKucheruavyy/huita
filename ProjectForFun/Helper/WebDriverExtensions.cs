@@ -28,16 +28,10 @@ namespace huita.Helper
             actions.SendKeys(Keys.Enter).Perform(); 
         }
 
-        public static void ScrollDown(this IWebDriver driver, int xLine, int yLine)
+        public static void ScrollPage(this IWebDriver driver, int xLine, int yLine)
         {
             IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
             js.ExecuteScript($"window.scrollBy({xLine}, {yLine})");
-        }
-
-        public static void CLICK(this IWebDriver driver, By someElement)
-        {
-            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-            js.ExecuteScript("arguments[0].click();", someElement);
         }
     }
 }
