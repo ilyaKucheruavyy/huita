@@ -48,32 +48,14 @@ namespace huita
             etsySomeTests.SortedSomeProduct();
             etsySomeTests.ChooseFilters();
 
-            //var productPrice = driver.FindElement(LocatorsForAssert.ProductPrice);
-            //var expectedProductPrice = "14.50";
-            //var actualProductPrice = productPrice.Text;
+            etsySomeTests.ChooseFirstProduct();
+            etsySomeTests.SelectProduct();
 
-            //var deliveryPrice = driver.FindElement(LocatorsForAssert.DeliveryPrice);
-            //var expectedDeliveryPrice = "14.50";
-            //var actualDeliveryPrice = deliveryPrice.Text;
+            var productPrice = driver.FindElement(LocatorsForAssert.FinalPrice);
+            var expectedProductPrice = "175.95";
+            var actualProductPrice = productPrice.Text;
 
-            //var finalCost = driver.FindElement(LocatorsForAssert.FinalPrice);
-            //var expectedFinalPrice = "29.00";
-            //var actualFinalPrice = finalCost.Text;
-
-            //Assert.Multiple(()=>
-            //{
-            //    Assert.True(expectedDeliveryPrice == actualDeliveryPrice, $"Expected delivery price: {expectedDeliveryPrice} not current actual result");
-            //    Assert.True(expectedProductPrice == actualProductPrice, $"Expected product price {expectedProductPrice}, not current actual result{actualProductPrice}");
-            //    Assert.True(expectedFinalPrice == actualFinalPrice, $"Expected finaly price: {expectedFinalPrice} not current actual result {actualFinalPrice}");
-            //});
-        }
-
-        [Test]
-        public void test()
-        {
-            driver.Navigate ().GoToUrl("https://www.etsy.com/search?q=%D0%BB%D0%B8%D1%81%D0%B0+%D0%B8+%D0%B3%D0%BE%D0%BD%D1%87%D0%B0%D1%8F&explicit=1&order=price_desc");
-
-            driver.FindElement(By.CssSelector(".filter-expander")).Click();
+            Assert.True(expectedProductPrice == actualProductPrice, $"expected finaly price: {expectedProductPrice}, not current actual price {actualProductPrice}");
         }
     }
 }

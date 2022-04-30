@@ -9,10 +9,10 @@ namespace huita.Helper
 {
     public static class Utilits
     { 
-        public static void SelectSomeElementByText(IWebDriver driver, By locator, string searchingText)
+        public static void SelectSomeElementByValue(IWebDriver driver, By locator, string value)
         {
             SelectElement selectElement = new(driver.FindElement(locator));
-            selectElement.SelectByText(searchingText);
+            selectElement.SelectByValue(value);
         }
 
         public static void SwitchFrame(IWebDriver driver, By locator)
@@ -64,6 +64,12 @@ namespace huita.Helper
         {
             IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
            js.ExecuteScript($"var a = document.evaluate('{checkboxIdentifier}', document).iterateNext(); a.click();");
+        }
+
+        public static void ScrollToElementWithJS(IWebDriver driver, string selector)
+        {
+            IJavaScriptExecutor js = (IJavaScriptExecutor)(driver);
+            js.ExecuteScript($"var selectCounry = document.querySelector('{selector}'); selectCounry.scrollIntoView(false);");
         }
     }
 }
