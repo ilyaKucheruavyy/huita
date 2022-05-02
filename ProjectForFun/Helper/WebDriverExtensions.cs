@@ -9,18 +9,6 @@ namespace huita.Helper
 {
     public static class WebDriverExtensions
     {
-        public static void WaitElement(this IWebDriver driver, int second)
-        {
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(second);
-
-        }
-
-        public static void WaitElement(this IWebDriver driver, IWebElement locator, int second)
-        {
-            new WebDriverWait(driver, TimeSpan.FromSeconds(second)).Until(ExpectedConditions.ElementIsVisible((By)locator));
-            new WebDriverWait(driver, TimeSpan.FromSeconds(second)).Until(ExpectedConditions.ElementToBeClickable(locator));
-        }
-
         public static void InputSomeText(this IWebDriver driver, IWebElement locator, string text)
         {
             locator.SendKeys(text);

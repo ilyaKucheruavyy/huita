@@ -20,6 +20,8 @@ namespace huita
 
         LocatorsForEtsyTests locators = new();
 
+        
+
         [Given(@"User go to Etsy")]
         public void GivenUserGoToEtsy()
         {
@@ -32,7 +34,6 @@ namespace huita
         [When(@"User go to fims menu")]
         public void WhenUserGoToFimsMenu()
         {
-            _driver.WaitElement(10);
             Utilits.MoveToElement(_driver, locators.MoveToCategory);
             (locators.ClickToFilmsMenu).Click();
         }
@@ -40,7 +41,7 @@ namespace huita
         [When(@"User searach some product")]
         public void WhenUserSearchSomeProduct()
         {
-            _driver.WaitElement(locators.SearchingField, 10);
+            _driver.WaitForElementToBeDisplayed(locators.SearchingField);
             Utilits.MoveToElementAndClick(_driver, locators.SearchingField);
             _driver.InputSomeText(locators.SearchingField, ProductsName.Rocky);
         }
@@ -56,7 +57,7 @@ namespace huita
         [When(@"User choose some filters")]
         public void WhenUserChooseSomeFilters()
         {
-            _driver.WaitElement(locators.ClickToFilters, 10);
+            _driver.WaitForElementToBeDisplayed(locators.ClickToFilters);
             (locators.ClickToFilters).Click();
 
             Utilits.WhenUserSelectCheckbox(_driver, locators.ClickToFreeShipping);
@@ -71,7 +72,7 @@ namespace huita
         [When(@"User click to first product")]
         public void WhenUserClickToFirstProduct()
         {
-            _driver.WaitElement(locators.SelectFirstProduct, 10);
+            _driver.WaitForElementToBeDisplayed(locators.SelectFirstProduct);
             (locators.SelectFirstProduct).Click();
             Utilits.SwitchToNewWindow(_driver);
             _driver.ScrollPage(0, 50);
@@ -81,19 +82,11 @@ namespace huita
         public void WhenUserSelectProduct()
         {
             Utilits.SelectSomeElementByValue(_driver, locators.ChooseProductSize, locators.ProductSizeValue);
-            _driver.WaitElement(locators.ChooseProductOption, 10);
+            _driver.WaitForElementToBeDisplayed(locators.ChooseProductOption);
             Utilits.SelectSomeElementByValue(_driver, locators.ChooseProductOption, locators.ProductOptionValue);
 
-            _driver.WaitElement(locators.AddToCartButton, 10);
+            _driver.WaitForElementToBeDisplayed(locators.AddToCartButton);
             (locators.AddToCartButton).Click();
-        }
-
-        [When(@"User wait for element to be displayed")]
-        public void WhenUserWaitForElementToBeDisplayed()
-        {
-            var testElement = _driver.FindElement(By.XPath(""));
-            _driver.WaitForElementToBeDisplayed(testElement); // вот тебе и перегрузка, € написал два метода с одинаковыми названи€ми, но разной перегрузкой, этот принимает веб≈лемент
-            _driver.WaitForElementToBeDisplayed(By.XPath("нужный тебе хпас, или вытащил с пейджи переменную этого хпаса")); // а этот бай локатор, так шо можно не ебать мозги и в зависимости от ситуации пользовать "один и тот же" метод, хех)
         }
 
         [Then(@"\[outcome]")]

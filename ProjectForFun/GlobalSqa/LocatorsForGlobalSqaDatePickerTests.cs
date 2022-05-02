@@ -16,7 +16,7 @@ namespace huita.GlobalSqaDatePickerPage
         [FindsBy(How = How.Id, Using = "menu-item-2827")]
         public IWebElement DatePickerMenu { get; set; } 
 
-        [FindsBy(How =How.CssSelector, Using = ".hasDatepicker")]
+        [FindsBy(How = How.CssSelector, Using = ".hasDatepicker")]
         public IWebElement DatePickerField { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".demo-frame.lazyloaded")]

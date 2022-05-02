@@ -1,9 +1,9 @@
 ﻿Feature: GoToDatePickerMenuBDDTests
 
-A short summary of the feature
+Background: Pre-Conditions 
 
 @tag1
-Scenario: [scenario name]
-	Given [context]
-	When [action]
-	Then [outcome]
+Scenario: DataPickerMenu
+	Given User go to GlobalSqa
+	When User go to datepicker menu
+	When User choose correct date

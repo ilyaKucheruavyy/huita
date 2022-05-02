@@ -36,7 +36,7 @@ namespace huita
             _driver.ScrollPage(0, 200);
 
             Utilits.SwitchFrame(_driver, globalSqa.Frame);
-            WebDriverExtensions.WaitElement(_driver, globalSqa.DatePickerField, 10);
+            _driver.WaitForElementToBeDisplayed(globalSqa.DatePickerField);
             (globalSqa.DatePickerField).Click();
         }
 
