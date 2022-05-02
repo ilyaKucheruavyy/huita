@@ -3,8 +3,6 @@ using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using System;
-using SeleniumExtras.PageObjects;
-using System.Collections.Generic;
 
 namespace huita.Helper
 {
