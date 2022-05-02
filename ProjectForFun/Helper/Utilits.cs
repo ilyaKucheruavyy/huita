@@ -7,9 +7,13 @@ using System.Collections.Generic;
 namespace huita.Helper
 {
     public static class Utilits
+    { 
+        public static void SelectSomeElementByValue(IWebDriver driver, By locator, string value)
     {
         public static void SelectSomeElementByValue(IWebDriver driver, IWebElement locator, string value)
         {
+            SelectElement selectElement = new(driver.FindElement(locator));
+            selectElement.SelectByValue(value);
             SelectElement selectElement = new(locator);
             selectElement.SelectByValue(value);
         }

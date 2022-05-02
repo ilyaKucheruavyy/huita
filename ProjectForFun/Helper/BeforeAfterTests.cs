@@ -13,6 +13,7 @@ namespace huita.Helper
     {
         public BeforeAfterTests(WebDriver driver) : base(driver) { }
 
+
         [AfterScenario(Order = 100000)]
         public void QuitDriver()
         {
