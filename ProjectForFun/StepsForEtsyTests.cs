@@ -18,20 +18,20 @@ namespace huita
             _driver = driver;
         }
 
-        LocatorsForEtsyTests locators = new ();
+        LocatorsForEtsyTests locators = new();
 
         [Given(@"User go to Etsy")]
-        public void GivenUserGoToEtsy() 
-        { 
+        public void GivenUserGoToEtsy()
+        {
             var baseUrl = "https://www.etsy.com/";
 
-           _driver.Navigate().GoToUrl(baseUrl);
-           _driver.Manage().Window.Maximize();
+            _driver.Navigate().GoToUrl(baseUrl);
+            _driver.Manage().Window.Maximize();
         }
 
         [When(@"User go to fims menu")]
         public void WhenUserGoToFimsMenu()
-        { 
+        {
             _driver.WaitElement(10);
             Utilits.MoveToElement(_driver, locators.MoveToCategory);
             (locators.ClickToFilmsMenu).Click();
@@ -86,6 +86,14 @@ namespace huita
 
             _driver.WaitElement(locators.AddToCartButton, 10);
             (locators.AddToCartButton).Click();
+        }
+
+        [When(@"User wait for element to be displayed")]
+        public void WhenUserWaitForElementToBeDisplayed()
+        {
+            var testElement = _driver.FindElement(By.XPath(""));
+            _driver.WaitForElementToBeDisplayed(testElement); // вот тебе и перегрузка, € написал два метода с одинаковыми названи€ми, но разной перегрузкой, этот принимает веб≈лемент
+            _driver.WaitForElementToBeDisplayed(By.XPath("нужный тебе хпас, или вытащил с пейджи переменную этого хпаса")); // а этот бай локатор, так шо можно не ебать мозги и в зависимости от ситуации пользовать "один и тот же" метод, хех)
         }
 
         [Then(@"\[outcome]")]
