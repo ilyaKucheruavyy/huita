@@ -6,11 +6,11 @@ using TechTalk.SpecFlow;
 namespace huita.Helper
 {
     [Binding]
-    public class BeforeAfterAction : BaseTest
+    public class BeforeAfterActions : BaseTest
     {
         private readonly IObjectContainer _container;
 
-        public BeforeAfterAction(IObjectContainer container)
+        public BeforeAfterActions(IObjectContainer container)
         {
             _container = container;
         }
