@@ -14,7 +14,6 @@ namespace huita.Steps
         {
             _driver = driver;
         }
-
         [When(@"User go to '(.*)' menu")]
         public void WhenUserGoToMenu(string tabName)
         {
