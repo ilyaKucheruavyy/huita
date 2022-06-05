@@ -6,11 +6,8 @@ namespace huita.Etsy
 {
     public class EtsyLocators
     {
-        //[FindsBy(How = How.Id,Using = "//span[contains(text(),'Игрушки и развлечения')]")]
-        //public IWebElement MoveToCategory { get; set; }
-
-        [FindsBy(How = How.Id,Using = "catnav-l4-11081")]
-        public IWebElement ClickToFilmsMenu { get; set; }
+        //[FindsBy(How = How.Id,Using = "catnav-l4-11081")]
+        //public IWebElement ClickToFilmsMenu { get; set; }
 
         [FindsBy(How=How.Id,Using = "global-enhancements-search-query")]
         public IWebElement SearchingField { get; set; }

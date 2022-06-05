@@ -3,7 +3,8 @@
 Background: Pre-Conditions 
 Given User go to 'etsyEnv'
 @tag
-Scenario: Etsy
+Scenario: EtsyBDDTests
+
 When User go to 'Игрушки и развлечения' menu
 When User go to 'Фильмы и музыка' sub menu
 When User searach product 'какое то имя продукта'

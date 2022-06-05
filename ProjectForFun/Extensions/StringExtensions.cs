@@ -15,7 +15,6 @@ namespace huita.Extensions
             {
                 try
                 {
-
                     string configFileContent = sr.ReadToEnd();
 
                     var responseContent = JsonConvert.DeserializeObject<JObject>(configFileContent);

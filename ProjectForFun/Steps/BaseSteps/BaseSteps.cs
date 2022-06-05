@@ -23,7 +23,6 @@ namespace huita.Spets.BaseSteps
                 case "etsyEnv":
                     _driver.Navigate().GoToUrl(EnvironmentProvider.EtsyEnv);
                     break;
-
                 case "secondEnv":
                     _driver.Navigate().GoToUrl(EnvironmentProvider.SecondEnv);
                         break;
