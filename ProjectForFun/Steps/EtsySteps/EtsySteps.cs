@@ -19,14 +19,6 @@ namespace huita
 
         EtsyLocators locators = new();
 
-        [When(@"User searach product '(.*)'")]
-        public void WhenUserSearchSomeProduct(string productName)
-        {
-            _driver.WaitForElementToBeDisplayed(locators.SearchingField);
-            _driver.MoveToElementAndClick(locators.SearchingField);
-            _driver.InputSomeText(locators.SearchingField, productName);
-        }
-
         [When(@"User click to first product")]
         public void WhenUserClickToFirstProduct()
         {

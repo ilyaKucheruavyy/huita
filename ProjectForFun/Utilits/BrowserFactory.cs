@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
+using huita.Providers;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
@@ -13,8 +14,7 @@ namespace huita.Helper
     {
         public static WebDriver CreateLocalDriver()
         {
-            var browser = "chrome";
-            switch (browser)
+            switch (BrowserProvider.Browser)
             {
                 case "chrome":
                     var chromeOptions = new ChromeOptions();
@@ -48,7 +48,7 @@ namespace huita.Helper
                     return new EdgeDriver();
 
                 default:
-                    throw new Exception($"Browser type '{browser}' was not identified");
+                    throw new Exception($"Browser type '{BrowserProvider.Browser}' was not identified");
             }
         }
     }

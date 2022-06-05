@@ -3,7 +3,6 @@ using OpenQA.Selenium;
 using huita.Helper;
 using huita.Etsy;
 using System.Threading;
-using huita.Components;
 
 namespace huita.Steps.EtsySteps
 {

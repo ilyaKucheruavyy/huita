@@ -1,8 +1,6 @@
 ﻿using TechTalk.SpecFlow;
 using OpenQA.Selenium;
 using huita.Helper;
-using huita.Etsy;
-using System.Threading;
 using huita.Components;
 
 namespace huita.Steps
@@ -16,9 +14,6 @@ namespace huita.Steps
         {
             _driver = driver;
         }
-
-      //  EtsyLocators locators = new();
-
         [When(@"User go to '(.*)' menu")]
         public void WhenUserGoToMenu(string tabName)
         {
