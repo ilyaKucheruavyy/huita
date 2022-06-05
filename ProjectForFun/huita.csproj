@@ -40,7 +40,7 @@
 
   <ItemGroup>
     <Folder Include="DTO\" />
-    <Folder Include="Pages\" />
+    <Folder Include="Providers\" />
   </ItemGroup>
 
 </Project>
