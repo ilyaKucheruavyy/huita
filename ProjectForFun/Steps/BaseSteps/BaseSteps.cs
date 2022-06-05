@@ -1,5 +1,7 @@
-﻿using OpenQA.Selenium;
+﻿using huita.Providers;
+using OpenQA.Selenium;
 using TechTalk.SpecFlow;
+using System;
 
 namespace huita.Spets.BaseSteps
 {
@@ -14,10 +16,20 @@ namespace huita.Spets.BaseSteps
         }
 
         [Given(@"User go to '(.*)'")]
-        public void GivenUserGoToEtsy(string baseUrl)
+        public void GivenUserGoToEtsy(string environment)
         { 
-            _driver.Navigate().GoToUrl(baseUrl);
-            _driver.Manage().Window.Maximize();
+            switch(environment)
+            {
+                case "etsyEnv":
+                    _driver.Navigate().GoToUrl(EnvironmentProvider.EtsyEnv);
+                    break;
+
+                case "secondEnv":
+                    _driver.Navigate().GoToUrl(EnvironmentProvider.SecondEnv);
+                        break;
+                    default:
+                    throw new Exception($"{environment} is not exsist");
+            }
         }
     }
 }

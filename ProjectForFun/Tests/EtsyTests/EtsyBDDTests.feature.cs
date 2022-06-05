@@ -77,6 +77,9 @@ namespace huita.Tests.EtsyTests
         {
 #line 3
 #line hidden
+#line 4
+testRunner.Given("User go to \'etsyEnv\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
@@ -102,27 +105,24 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 7
-testRunner.Given("User go to \'https://www.etsy.com/\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 9
 testRunner.When("User go to \'Игрушки и развлечения\' menu", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 10
-testRunner.When("", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 8
+testRunner.When("User go to \'Фильмы и музыка\' sub menu", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 11
+#line 9
 testRunner.When("User searach product \'какое то имя продукта\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 12
+#line 10
 testRunner.When("User sorted product by \'Последние\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 13
+#line 11
 testRunner.When("User choose some filters", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 14
+#line 12
 testRunner.When("User click to first product", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 15
+#line 13
 testRunner.When("User select product", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             }

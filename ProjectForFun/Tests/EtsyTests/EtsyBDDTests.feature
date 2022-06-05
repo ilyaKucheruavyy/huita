@@ -1,11 +1,9 @@
 ﻿Feature: BDDTests
 
 Background: Pre-Conditions 
-
+Given User go to 'etsyEnv'
 @tag
 Scenario: Etsy
-Given User go to 'https://www.etsy.com/'
-
 When User go to 'Игрушки и развлечения' menu
 When User go to 'Фильмы и музыка' sub menu
 When User searach product 'какое то имя продукта'
