@@ -28,5 +28,19 @@ namespace huita.Extensions
                 }
             }
         }
+
+        public static string ChangeDashToSpace(this string text)
+        {
+            return text.Replace("-", " ");
+        }
+
+        public static string DeleteSpace(this string text)
+        {
+            return text.Replace(" ", "");
+        }
+        public static string ChangeSpaceToDash(this string text)
+        {
+            return text.Replace(" ", "-");
+        }
     }
 }

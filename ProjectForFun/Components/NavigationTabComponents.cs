@@ -7,7 +7,6 @@ namespace huita.Components
 {
     public class NavigationTabComponents
     {
-
         private readonly WebDriver _driver;
 
         public NavigationTabComponents(WebDriver driver)
