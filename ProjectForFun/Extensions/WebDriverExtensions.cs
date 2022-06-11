@@ -98,13 +98,12 @@ namespace huita.Helper
             }
         }
 
-        public static void SortedBySomeWorld(this IWebDriver driver, List<IWebElement> locator, string sortedAllBy)
-        {
-
-            var SortedBy = locator
-                .First(x => x.Text == sortedAllBy);
-            SortedBy.Click();
-        }
+        //public static void SortedBy(this IWebDriver driver, List<IWebElement> locator, string sortedAllBy)
+        //{
+        //    var SortedBy = locator
+        //        .First(x => x.Text == sortedAllBy);
+        //    SortedBy.Click();
+        //}
 
         public static void WhenUserSelectCheckbox(this IWebDriver driver, string checkboxIdentifier)
         {

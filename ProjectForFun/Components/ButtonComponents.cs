@@ -2,11 +2,11 @@
 
 namespace huita.Components
 {
-    public class ButtonByAriaLabelComponents
+    public class ButtonComponents
     {
         private readonly WebDriver _driver;
 
-        public ButtonByAriaLabelComponents(WebDriver driver)
+        public ButtonComponents(WebDriver driver)
         {
             _driver = driver;
         }
