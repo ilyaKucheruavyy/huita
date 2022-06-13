@@ -11,12 +11,10 @@ namespace TestProjectEtsy.Components
             _driver = driver;
         }
 
-        public void WhenUserClickCheckbox(string filterName)
+        public void ClickCheckbox(string filterName)
         {
             IJavaScriptExecutor js = (IJavaScriptExecutor)_driver;
             js.ExecuteScript($"var a = document.evaluate('.//div[@class = 'main-filters']//label[contains(text(),'{filterName}')]', document).iterateNext(); a.click();");
         }
-
-
     }
 }

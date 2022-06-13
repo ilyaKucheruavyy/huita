@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace huita.Utilits
+namespace TestProjectEtsy.Utilits
 {
     public static class Config
     {

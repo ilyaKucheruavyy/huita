@@ -1,9 +1,9 @@
 ﻿using TechTalk.SpecFlow;
 using OpenQA.Selenium;
-using huita.Helper;
-using huita.Components;
+using TestProjectEtsy.Helper;
+using TestProjectEtsy.Components;
 
-namespace huita.Steps
+namespace TestProjectEtsy.Steps
 {
     [Binding]
     public class EtsyNavigationSteps : SpecFlowContext
@@ -14,6 +14,7 @@ namespace huita.Steps
         {
             _driver = driver;
         }
+
         [When(@"User go to '(.*)' menu")]
         public void WhenUserGoToMenu(string tabName)
         {

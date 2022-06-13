@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace huita.Base
+namespace TestProjectEtsy.Base
 {
     public interface IBaseTest
     {

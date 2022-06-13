@@ -1,4 +1,4 @@
-﻿namespace huita.Pages
+﻿namespace TestProjectEtsy.Pages
 {
     public class HomePage
     {

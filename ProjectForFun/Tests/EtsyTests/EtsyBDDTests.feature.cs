@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace huita.Tests.EtsyTests
+namespace TestProjectEtsy.Tests.EtsyTests
 {
     using TechTalk.SpecFlow;
     using System;

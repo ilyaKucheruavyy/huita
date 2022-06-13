@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace huita.Components
+namespace TestProjectEtsy.Components
 {
     public class ButtonComponents
     {

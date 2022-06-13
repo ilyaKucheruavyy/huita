@@ -1,9 +1,9 @@
-﻿using huita.Base;
+﻿using TestProjectEtsy.Base;
 using OpenQA.Selenium;
 
 
 
-namespace huita.Components
+namespace TestProjectEtsy.Components
 {
     public class NavigationTabComponents
     {
