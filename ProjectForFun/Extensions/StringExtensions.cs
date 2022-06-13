@@ -4,7 +4,7 @@ using System;
 using System.IO;
 using System.Linq;
 
-namespace huita.Extensions
+namespace TestProjectEtsy.Extensions
 {
     public static class StringExtensions
     {
@@ -27,6 +27,21 @@ namespace huita.Extensions
                     throw new Exception($"Unable to read configuration property for '{key}' key: {e}");
                 }
             }
+        }
+
+        public static string ChangeDashToSpace(this string text)
+        {
+            return text.Replace("-", " ");
+        }
+
+        public static string DeleteSpace(this string text)
+        {
+            return text.Replace(" ", "");
+        }
+
+        public static string ChangeSpaceToDash(this string text)
+        {
+            return text.Replace(" ", "-");
         }
     }
 }

@@ -1,9 +1,9 @@
 ﻿using BoDi;
-using huita.Base;
+using TestProjectEtsy.Base;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-namespace huita.Helper
+namespace TestProjectEtsy.Helper
 {
     [Binding]
     public class BeforeAfterActions : BaseTest

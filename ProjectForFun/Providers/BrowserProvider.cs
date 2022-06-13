@@ -1,7 +1,7 @@
-﻿using huita.Extensions;
-using huita.Utilits;
+﻿using TestProjectEtsy.Extensions;
+using TestProjectEtsy.Utilits;
 
-namespace huita.Providers
+namespace TestProjectEtsy.Providers
 {
     public static class BrowserProvider
     {

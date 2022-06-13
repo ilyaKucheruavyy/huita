@@ -1,7 +1,7 @@
-﻿using huita.Helper;
+﻿using TestProjectEtsy.Helper;
 using OpenQA.Selenium;
 
-namespace huita.Base
+namespace TestProjectEtsy.Base
 {
     public class BaseTest : IBaseTest
     {

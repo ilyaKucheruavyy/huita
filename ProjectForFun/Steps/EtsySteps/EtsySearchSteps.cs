@@ -1,7 +1,7 @@
 ﻿using TechTalk.SpecFlow;
 using OpenQA.Selenium;
 
-namespace huita.Steps.EtsySteps
+namespace TestProjectEtsy.Steps.EtsySteps
 {
     [Binding]
     public class EtsySearchSteps: SpecFlowContext

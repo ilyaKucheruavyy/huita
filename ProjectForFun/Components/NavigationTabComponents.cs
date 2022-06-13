@@ -1,13 +1,12 @@
-﻿using huita.Base;
+﻿using TestProjectEtsy.Base;
 using OpenQA.Selenium;
 
 
 
-namespace huita.Components
+namespace TestProjectEtsy.Components
 {
     public class NavigationTabComponents
     {
-
         private readonly WebDriver _driver;
 
         public NavigationTabComponents(WebDriver driver)

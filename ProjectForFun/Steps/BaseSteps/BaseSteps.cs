@@ -1,9 +1,9 @@
-﻿using huita.Providers;
+﻿using TestProjectEtsy.Providers;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using System;
 
-namespace huita.Spets.BaseSteps
+namespace TestProjectEtsy.Spets.BaseSteps
 {
     [Binding]
     public class BaseSteps : SpecFlowContext
