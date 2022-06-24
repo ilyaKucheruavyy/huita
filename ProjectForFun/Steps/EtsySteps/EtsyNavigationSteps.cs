@@ -1,9 +1,9 @@
 ﻿using TechTalk.SpecFlow;
 using OpenQA.Selenium;
-using TestProjectEtsy.Helper;
 using TestProjectEtsy.Components;
+using TestProjectEtsy.Extensions;
 
-namespace TestProjectEtsy.Steps
+namespace TestProjectEtsy.Steps.EtsySteps
 {
     [Binding]
     public class EtsyNavigationSteps : SpecFlowContext

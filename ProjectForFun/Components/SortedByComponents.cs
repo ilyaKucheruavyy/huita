@@ -1,4 +1,6 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
+using TestProjectEtsy.Pages;
 
 namespace TestProjectEtsy.Components
 {
@@ -11,9 +13,10 @@ namespace TestProjectEtsy.Components
             _driver = driver;
         }
 
-        public IWebElement SortBy(string sortedBy)
+        public void SortBy(string sortedBy)
         {
-            return _driver.FindElement(By.XPath($".//div[@role = 'menu']//a[contains(text(),'{sortedBy}')]"));
+            var SelectObject = new SelectElement(_driver.FindElement(By.XPath(".//select[@class = 'select__field']")));
+            SelectObject.SelectByText(sortedBy);
         }
     }
 }

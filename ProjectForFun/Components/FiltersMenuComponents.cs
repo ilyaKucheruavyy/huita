@@ -11,10 +11,9 @@ namespace TestProjectEtsy.Components
             _driver = driver;
         }
 
-        public void ClickCheckbox(string filterName)
+        public IWebElement UserClickOnCheckBox(string filterName)
         {
-            IJavaScriptExecutor js = (IJavaScriptExecutor)_driver;
-            js.ExecuteScript($"var a = document.evaluate('.//div[@class = 'main-filters']//label[contains(text(),'{filterName}')]', document).iterateNext(); a.click();");
+            return _driver.FindElement(By.XPath($".//div[@class = 'sidebar-filter__body']//div[contains(text(),'{filterName}')]//preceding-sibling::input"));
         }
     }
 }

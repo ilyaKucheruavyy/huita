@@ -3,7 +3,7 @@ using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using System;
 
-namespace TestProjectEtsy.Spets.BaseSteps
+namespace TestProjectEtsy.Steps.BaseSteps
 {
     [Binding]
     public class BaseSteps : SpecFlowContext
