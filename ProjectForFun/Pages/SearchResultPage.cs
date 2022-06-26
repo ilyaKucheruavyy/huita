@@ -15,8 +15,7 @@ namespace TestProjectEtsy.Pages
         [FindsBy(How = How.XPath, Using = ".//div[@class = 'tabs-item flex center-xs middle-xs']")]
         public IWebElement SelectedFilters { get; set; }
 
-        [FindsBy(How = How.XPath, Using = ".//div[@class = 'list-body']//div[@class = 'list-item__title-container m_b-5']//a[contains(text(),'')]")]
+        [FindsBy(How = How.XPath, Using = ".//div[@class = 'list-body']//div[@class = 'list-item__title-container m_b-5']")]
         public List<IWebElement> ProductList { get; set; }
-
     }
 }

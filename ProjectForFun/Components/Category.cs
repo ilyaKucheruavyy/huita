@@ -2,23 +2,17 @@
 
 namespace TestProjectEtsy.Components
 {
-    public class CatalogComponent
+    public class Category : BaseComponent
     {
-        private readonly WebDriver _driver;
-
-        public CatalogComponent (WebDriver driver)
+        public IWebElement GetCategory(string categoryName)
         {
-            _driver = driver;
-        }
-
-        public IWebElement UserChooseCatalogOnSearchResultPage(string categoryName)
-        {
-            return _driver.FindElement
+            return Driver.FindElement
                 (By.XPath($".//div[@class = 'search-sidebar__item content']//b[contains(text(), '{categoryName}')]"));
         }
-        public IWebElement UserCgooseSubCatalogOnSearchResultPage(string subCategoryName)
+
+        public IWebElement GetSubCategory(string subCategoryName)
         {
-            return _driver.FindElement
+            return Driver.FindElement
                 (By.XPath
                 ($".//div[@class = 'search-sidebar__item content']//div[@class = 'search-sidebar-catalogs__name link link--black' and contains(text(), '{subCategoryName}')]"));
         }

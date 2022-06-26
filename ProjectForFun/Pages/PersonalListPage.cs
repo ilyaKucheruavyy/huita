@@ -8,7 +8,5 @@ namespace TestProjectEtsy.Pages
     {
         [FindsBy(How = How.XPath, Using = ".//div[@class = 'viewbox-striped border-t']//p/a")]
         public List<IWebElement> ProductAddedToPersonalList { get; set; }
-
-
     }
 }
