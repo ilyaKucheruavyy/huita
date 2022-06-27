@@ -15,7 +15,5 @@ namespace TestProjectEtsy.Pages
         public Actions Actions { get; set; }
 
         public IWebStorage Storage;
-
-
     }
 }

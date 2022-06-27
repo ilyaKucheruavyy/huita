@@ -4,9 +4,8 @@ using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
-namespace TestProjectEtsy.Helper
+namespace TestProjectEtsy.Extensions
 {
     public static class WebDriverExtensions
     {
