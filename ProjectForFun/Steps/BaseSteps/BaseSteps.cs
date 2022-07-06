@@ -20,7 +20,7 @@ namespace TestProjectEtsy.Steps.BaseSteps
         { 
             switch(environment)
             {
-                case "etsyEnv":
+                case "HotLineEnv":
                     _driver.Navigate().GoToUrl(EnvironmentProvider.EtsyEnv);
                     break;
                 case "secondEnv":

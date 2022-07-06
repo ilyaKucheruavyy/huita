@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using System;
@@ -9,13 +8,6 @@ namespace TestProjectEtsy.Extensions
 {
     public static class WebDriverExtensions
     {
-        public static void InputSomeText(this IWebDriver driver, IWebElement locator, string text)
-        {
-            locator.SendKeys(text);
-            Actions actions = new(driver);
-            actions.SendKeys(Keys.Enter).Perform();
-        }
-
         public static void ScrollPage(this IWebDriver driver, int xLine, int yLine)
         {
             IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
@@ -54,34 +46,6 @@ namespace TestProjectEtsy.Extensions
             };
         }
 
-        public static void SelectSomeElementByValue(this IWebDriver driver, IWebElement locator, string value)
-        {
-            SelectElement selectElement = new(locator);
-            selectElement.SelectByValue(value);
-        }
-
-        public static void SwitchFrame(this IWebDriver driver, IWebElement locator)
-        {
-            IWebElement frame = locator;
-            driver.SwitchTo().Frame(frame);
-        }
-
-        public static void MoveToElementAndClick(this IWebDriver driver, IWebElement locator)
-        {
-            var actions = new Actions(driver);
-            actions.MoveToElement(locator)
-                .Click()
-                .Perform();
-        }
-
-        public static void MoveToElement(this IWebDriver driver, IWebElement locator)
-        {
-            Actions actions = new(driver);
-            actions.MoveToElement(locator)
-                .Perform();
-        }
-
-
         public static void SwitchToNewWindow(this IWebDriver driver)
         {
             var newPageHandles = driver.WindowHandles;
@@ -95,12 +59,6 @@ namespace TestProjectEtsy.Extensions
                     driver.SwitchTo().Window(handle);
                 }
             }
-        }
-
-        public static void WhenUserSelectCheckbox(this IWebDriver driver, string checkboxIdentifier)
-        {
-            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-            js.ExecuteScript($"var a = document.evaluate('{checkboxIdentifier}', document).iterateNext(); a.click();");
         }
 
         public static void ScrollToElementWithJS(this IWebDriver driver, string selector)

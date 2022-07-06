@@ -10,10 +10,5 @@ namespace TestProjectEtsy.Components
                 (By.XPath
                 ($".//div[@class = 'list-body']//div[@class = 'list-item__title-container m_b-5']//a[contains(text(),'{productName}')]//parent::div//parent::div//preceding-sibling::div//input"));
         }
-
-        public IWebElement GetComparedItem(string productName)
-        {
-            return Driver.FindElement(By.XPath($".//div[@class = 'item item-product']//a[@class = 'title-overflow' and contains(text(),'{productName}')]"));
-        }
     }
 }
