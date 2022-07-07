@@ -4,8 +4,8 @@ using TestProjectEtsy.Components;
 using TestProjectEtsy.Pages;
 using TestProjectEtsy.Extensions;
 using OpenQA.Selenium.Interactions;
-using System.Linq;
 using System.Collections.Generic;
+using NUnit.Framework;
 
 namespace TestProjectEtsy.Steps.HotLineSteps
 {
@@ -14,17 +14,16 @@ namespace TestProjectEtsy.Steps.HotLineSteps
     {
         private readonly WebDriver _driver;
 
-        public SearchResultSteps (WebDriver driver)
+        public SearchResultSteps(WebDriver driver)
         {
             _driver = driver;
         }
 
         [When(@"User choose manufacturer '(.*)'")]
-        public void UserChooseManufacterer(string manufacturerName)
+        public void UserChooseManufacturer(string manufacturerName)
         {
             var searchResultPage = new SearchResultPage();
             var manufacturer = new Manufacturer();
-
             _driver.WaitForElementToBeDisplayed(searchResultPage.SearchResultTitle);
             searchResultPage.ShowAllManufacturer.Click();
             manufacturer.GetManufacturerOnSearchResultPage(manufacturerName);
@@ -35,7 +34,6 @@ namespace TestProjectEtsy.Steps.HotLineSteps
         {
             var searchResultPage = new SearchResultPage();
             var category = new Category();
-
             _driver.WaitForElementToBeDisplayed(searchResultPage.SearchResultTitle);
             category.GetCategoryOnSearchresultPage(categoryName);
         }
@@ -45,7 +43,6 @@ namespace TestProjectEtsy.Steps.HotLineSteps
         {
             var searchResultPage = new SearchResultPage();
             var category = new Category();
-
             _driver.WaitForElementToBeDisplayed(searchResultPage.SearchResultTitle);
             category.GetSubCategoryOnSearchresultPage(subCategoryName);
         }
@@ -55,35 +52,47 @@ namespace TestProjectEtsy.Steps.HotLineSteps
         {
             var searchResultPage = new SearchResultPage();
             var filtersMenu = new FiltersMenu();
-
             _driver.WaitForElementToBeDisplayed(searchResultPage.CategoryTitle);
             filtersMenu.GetFilterCheckbox(filterName);
         }
 
-        [When(@"User add product '(.*)' to compare")]
+        [Then(@"User add product '(.*)' to compare")]
         public void UserAddProductToCompare(string productName)
         {
             var searchResultPage = new SearchResultPage();
             var compare = new Compare();
-
             _driver.WaitForElementToBeDisplayed(searchResultPage.CategoryTitle);
             compare.GetCompareCheckboxForItem(productName);
         }
 
-        [Then(@"User check fuond product")]
-        public void UserCheckFoundProduct()
+        [When(@"User check found product '(.*)'")]
+        public void UserCheckFoundProduct(string productName)
         {
             var searchResultPage = new SearchResultPage();
-            var actions = new Actions(_driver); 
-            _driver.WaitForElementToBeDisplayed(searchResultPage.CategoryTitle);
+            var actions = new Actions(_driver);
+            var productsList = new List<IWebElement>();
 
             do
             {
-                actions.MoveToElement(searchResultPage.NextPage).Perform();
-                searchResultPage.NextPage.Click();
-                searchResultPage.FoundItems.ToList();
+                productsList.AddRange(searchResultPage.GetListFoundProduct());
+                _driver.WaitForElementToBeDisplayed(searchResultPage.CategoryTitle);
+                try
+                {
+                    actions.MoveToElement(searchResultPage.NextPage).Perform();
+                    searchResultPage.NextPage.Click();
+
+                }
+                catch
+                {
+                    break;
+                }
             }
             while (searchResultPage.NextPage.Displayed);
+
+            foreach (var product in productsList)
+            {
+                Assert.IsTrue(product.Text.Contains(productName));
+            }
         }
     }
 }

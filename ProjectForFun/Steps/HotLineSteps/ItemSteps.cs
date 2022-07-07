@@ -19,7 +19,6 @@ namespace TestProjectEtsy.Steps.HotLineSteps
         public void UserClickOnComparePriceButton()
         {
             var itemPage = new ItemPage();
-
             _driver.WaitForElementToBeDisplayed(itemPage.ItemPageHeader);
             itemPage.ComparePriceButton.Click();
         }
@@ -28,7 +27,6 @@ namespace TestProjectEtsy.Steps.HotLineSteps
         public void UserAddProductToCompare()
         {
             var itemPage = new ItemPage();
-
             _driver.WaitForElementToBeDisplayed(itemPage.ItemPageHeader);
             itemPage.AddToCompareButton.Click();
         }
@@ -38,7 +36,6 @@ namespace TestProjectEtsy.Steps.HotLineSteps
         {
             var itemPage = new ItemPage();
             var personalListPage = new PersonalListPage();
-
             itemPage.GoTolist.Click();
             _driver.WaitForElementToBeDisplayed(personalListPage.PersonalListHeader);
         }

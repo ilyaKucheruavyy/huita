@@ -21,7 +21,6 @@ namespace TestProjectEtsy.Steps.BaseSteps
         {
             var itemPage = new ItemPage();
             var button = new Button();
-
             _driver.WaitForElementToBeDisplayed(itemPage.ModalWindowHeader);
             button.GetButtonByText(buttonName).Click();
         }
@@ -31,7 +30,6 @@ namespace TestProjectEtsy.Steps.BaseSteps
         {
             var item = new Item();
             var searchResultPage = new SearchResultPage();
-
             _driver.WaitForElementToBeDisplayed(searchResultPage.CategoryTitle);
             item.GetToProductOnSearchResultPage(productName).Click();
         }
@@ -40,7 +38,6 @@ namespace TestProjectEtsy.Steps.BaseSteps
         public void UserSearchItem(string placeholderIdentifier, string itemName)
         {
             var searchBar = new SearchBar();
-
             searchBar.SearchBarByPlaceHolder(placeholderIdentifier).SendKeys(itemName);
         }
 
@@ -49,7 +46,6 @@ namespace TestProjectEtsy.Steps.BaseSteps
         {
             var dropdown = new DropDown();
             var searchResultPage = new SearchResultPage();
-
             _driver.WaitForElementToBeDisplayed(searchResultPage.CategoryTitle);
             dropdown.GetOptionsDropdown(dropdownIdentifier, sortByName);
         }
@@ -58,7 +54,6 @@ namespace TestProjectEtsy.Steps.BaseSteps
         public void UserClickOnMyList()
         {
             var personalListPage = new PersonalListPage();
-
             personalListPage.GoToMyListsButton.Click();
             Thread.Sleep(500);
         }
@@ -67,7 +62,6 @@ namespace TestProjectEtsy.Steps.BaseSteps
         public void UserClickOnComprasion()
         {
             var comparePage = new ComparePage();
-
             comparePage.GoToComparisonButton.Click();
             Thread.Sleep(500);
         }
@@ -76,8 +70,14 @@ namespace TestProjectEtsy.Steps.BaseSteps
         public void UserChooseListOnDropdown(string listName, string dropdownId)
         {
             var dropdown = new DropDown();
-
             dropdown.GetParameterDropdown(dropdownId, listName);
+        }
+
+        [When(@"User go to main menu")]
+        public void UserGoToMainMenu()
+        {
+            var mainPage = new MainPage();
+            mainPage.Logo.Click();
         }
     }
 }

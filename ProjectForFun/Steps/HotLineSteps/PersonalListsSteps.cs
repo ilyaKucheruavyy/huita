@@ -22,7 +22,6 @@ namespace TestProjectEtsy.Steps.HotLineSteps
         {
             var item = new Item();
             var personalListPage = new PersonalListPage();
-
             _driver.WaitForElementToBeDisplayed(personalListPage.PersonalListHeader);
             item.DeleteItemAddedToPersonalList(productName);
         }
@@ -32,8 +31,8 @@ namespace TestProjectEtsy.Steps.HotLineSteps
         {
             var personalListPage = new PersonalListPage();
             var anyProduct = personalListPage.ProductAddedToPersonalList.First(x => x.Text == productName);
-
             _driver.WaitForElementToBeDisplayed(personalListPage.PersonalListHeader);
+
             Assert.IsTrue(anyProduct.Displayed, $"Product {productName} is not displayed on personal list page");
         }
     }

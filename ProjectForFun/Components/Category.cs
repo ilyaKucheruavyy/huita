@@ -14,7 +14,8 @@ namespace TestProjectEtsy.Components
         {
             return Driver.FindElement
                 (By.XPath
-                ($".//div[@class = 'search-sidebar__item content']//div[@class = 'search-sidebar-catalogs__name link link--black' and contains(text(), '{subCategoryName}')]"));
+                ($".//div[@class = 'search-sidebar__item content']" +
+                $"//div[@class = 'search-sidebar-catalogs__name link link--black' and contains(text(), '{subCategoryName}')]"));
         }
     }
 }

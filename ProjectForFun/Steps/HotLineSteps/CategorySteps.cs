@@ -22,7 +22,6 @@ namespace TestProjectEtsy.Steps.HotLineSteps
         {
             var mainPage = new MainPage();
             var categoryPage = new CategoryPage();
-
             mainPage.AllCategories.Click();
             _driver.WaitForElementToBeDisplayed(categoryPage.CategoryHeader);
         }
@@ -31,25 +30,14 @@ namespace TestProjectEtsy.Steps.HotLineSteps
         public void UserSearchCategory(string categoryName)
         {
             var autocomplete = new Autocomplete();
-
             autocomplete.GetParameterOnCategoryPage(categoryName).Click();
-        }
-
-        [When(@"User go to main menu")]
-        public void UserGoToMainMenu()
-        {
-            var mainPage = new MainPage();
-
-            mainPage.Logo.Click();
         }
 
         [Then(@"User sees category header")]
         public void UserSeesCategoryHeader()
         {
             var categoryPage = new CategoryPage();
-
             Assert.IsTrue(categoryPage.CategoryHeader.Displayed, $"Element {categoryPage.CategoryHeader} is not displayed");
         }
-        
     }
 }

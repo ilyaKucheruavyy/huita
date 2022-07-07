@@ -66,6 +66,5 @@ namespace TestProjectEtsy.Extensions
             IJavaScriptExecutor js = (IJavaScriptExecutor)(driver);
             js.ExecuteScript($"var selectCounry = document.querySelector('{selector}'); selectCounry.scrollIntoView(false);");
         }
-
     }
 }

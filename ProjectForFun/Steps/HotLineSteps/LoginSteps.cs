@@ -20,13 +20,10 @@ namespace TestProjectEtsy.Steps.EtsySteps
         public void WhenUserLoginWithEmailAndPassword(string email, string password)
         {
             var logInPage = new LogInPage();
-
             logInPage.LoginButton.Click();
             _driver.WaitForElementToBeDisplayed(logInPage.EmailField);
-
             logInPage.EmailField.SendKeys(email);
             logInPage.PasswordField.SendKeys(password);
-
             logInPage.SubmitButton.Click();
         }
 
@@ -34,7 +31,6 @@ namespace TestProjectEtsy.Steps.EtsySteps
         public void UserSeesNicknameInsteadOfLoginButton(string userNickname)
         {
             var logInPage = new LogInPage();
-
             Assert.AreEqual(logInPage.LoginButton.Text, userNickname, 
                 $"Actual result {logInPage.LoginButton.Text} is not equal expected result {userNickname}");
         }

@@ -23,7 +23,6 @@ namespace TestProjectEtsy.Steps.HotLineSteps
         {
             var item = new Item();
             var comparePage = new ComparePage();
-
             _driver.WaitForElementToBeDisplayed(comparePage.ComparsionHeader);
             item.DeleteItemAddedToComparsion(productName);
         }
@@ -32,7 +31,6 @@ namespace TestProjectEtsy.Steps.HotLineSteps
         public void UserCheckProductAddedToComparsion(string productName)
         {
             var comparePage = new ComparePage();
-
             _driver.WaitForElementToBeDisplayed(comparePage.ComparsionHeader);
             var anyProduct = comparePage.ComparedItems.First(x => x.Text == productName);
 

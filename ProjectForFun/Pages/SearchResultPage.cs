@@ -1,10 +1,11 @@
 ﻿using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TestProjectEtsy.Pages
 {
-    public  class SearchResultPage
+    public  class SearchResultPage : BasePage
     {
         [FindsBy(How = How.XPath, Using = ".//div[@class = 'search__title']")]
         public IWebElement SearchResultTitle { get; set; }
@@ -24,7 +25,9 @@ namespace TestProjectEtsy.Pages
         [FindsBy(How = How.XPath, Using = ".//a[@class = 'page page--next']")]
         public IWebElement NextPage { get; set; }
 
-        [FindsBy(How = How.XPath, Using = ".//div[@class = 'list-body']//div[@class = 'list-item__title-container m_b-5']//a[contains(text(),'')]")]
-        public List<IWebElement> FoundItems { get; set; }
+        public List<IWebElement> GetListFoundProduct()
+        {
+            return Driver.FindElements(By.XPath(".//a[contains(@class,'list-item__title')]")).ToList();
+        }
     }
 }

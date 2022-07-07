@@ -21,7 +21,6 @@ namespace TestProjectEtsy.Steps.HotLineSteps
         public void UserChangeCity()
         {
             var mainPage = new MainPage();
-
             mainPage.ChangeCityButton.Click();
             _driver.WaitForElementToBeDisplayed(mainPage.ChangeCityHeader);
         }
@@ -30,7 +29,6 @@ namespace TestProjectEtsy.Steps.HotLineSteps
         public void UserChooseCity(string cityName)
         {
             var autocmplete = new Autocomplete();
-
             autocmplete.GetParameterOnChangeCityWindow(cityName).Click();
         }
 
@@ -38,7 +36,6 @@ namespace TestProjectEtsy.Steps.HotLineSteps
         public void UserSeesChangeCityHeader()
         {
             var mainPage = new MainPage();
-
             Assert.IsTrue(mainPage.ChangeCityHeader.Displayed, $"Element {mainPage.ChangeCityHeader} is not displayed");
         }
 
@@ -46,7 +43,6 @@ namespace TestProjectEtsy.Steps.HotLineSteps
         public void UserSeesChangedCityName(string cityName)
         {
             var mainPage = new MainPage();
-
             Assert.AreEqual(mainPage.ChangeCityButton.Text, cityName, 
                 $"Actual result {mainPage.ChangeCityButton.Text} is not equal expected result {cityName}");
         }
