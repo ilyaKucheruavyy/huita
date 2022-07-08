@@ -28,8 +28,8 @@ namespace TestProjectEtsy.Steps.HotLineSteps
         [When(@"User choose city '(.*)'")]
         public void UserChooseCity(string cityName)
         {
-            var autocmplete = new Autocomplete();
-            autocmplete.GetParameterOnChangeCityWindow(cityName).Click();
+            var autocomplete = new Autocomplete();
+            autocomplete.GetParameterOnChangeCityWindow(cityName).Click();
         }
 
         [Then(@"User sees change city header")]

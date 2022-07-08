@@ -16,12 +16,12 @@ namespace TestProjectEtsy.Steps.BaseSteps
         }
 
         [Given(@"User go to '(.*)'")]
-        public void GivenUserGoToEtsy(string environment)
+        public void GivenUserGoToHotline(string environment)
         { 
             switch(environment)
             {
                 case "HotLineEnv":
-                    _driver.Navigate().GoToUrl(EnvironmentProvider.EtsyEnv);
+                    _driver.Navigate().GoToUrl(EnvironmentProvider.HotLineEnv);
                     break;
                 case "secondEnv":
                     _driver.Navigate().GoToUrl(EnvironmentProvider.SecondEnv);

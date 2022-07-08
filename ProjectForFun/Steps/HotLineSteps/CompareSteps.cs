@@ -18,23 +18,23 @@ namespace TestProjectEtsy.Steps.HotLineSteps
             _driver = driver;
         }
 
-        [When(@"User delete product '(.*)' from comparsion")]
+        [When(@"User delete product '(.*)' from comparison")]
         public void UserDeleteProductFromComparsion(string productName)
         {
             var item = new Item();
             var comparePage = new ComparePage();
             _driver.WaitForElementToBeDisplayed(comparePage.ComparsionHeader);
-            item.DeleteItemAddedToComparsion(productName);
+            item.DeleteItemAddedToComparison(productName);
         }
 
-        [Then(@"User check product '(.*)' added to comparsion")]
-        public void UserCheckProductAddedToComparsion(string productName)
+        [Then(@"User check product '(.*)' added to comparison")]
+        public void UserCheckProductAddedToComparison(string productName)
         {
             var comparePage = new ComparePage();
             _driver.WaitForElementToBeDisplayed(comparePage.ComparsionHeader);
             var anyProduct = comparePage.ComparedItems.First(x => x.Text == productName);
 
-            Assert.IsTrue(anyProduct.Displayed, $"product {anyProduct} is not displayed on comparsion page");
+            Assert.IsTrue(anyProduct.Displayed, $"product {anyProduct} is not displayed on comparison page");
         }
     }
 }

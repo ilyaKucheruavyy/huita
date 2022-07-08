@@ -9,7 +9,7 @@ namespace TestProjectEtsy.Components
             return Driver.FindElement(By.XPath
                 ($".//div[@class = 'list-body']//div[@class = 'list-item__title-container m_b-5']//a[contains(text(),'{productName}')]"));
         }
-        public IWebElement DeleteItemAddedToComparsion(string productName)
+        public IWebElement DeleteItemAddedToComparison(string productName)
         {
             return Driver.FindElement(By.XPath($".//a[@class = 'title-overflow' and contains(text(),'{productName}')]/preceding-sibling::div/i"));
         }

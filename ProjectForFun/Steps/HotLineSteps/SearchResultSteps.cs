@@ -35,7 +35,7 @@ namespace TestProjectEtsy.Steps.HotLineSteps
             var searchResultPage = new SearchResultPage();
             var category = new Category();
             _driver.WaitForElementToBeDisplayed(searchResultPage.SearchResultTitle);
-            category.GetCategoryOnSearchresultPage(categoryName);
+            category.GetCategoryOnSearchResultPage(categoryName);
         }
 
         [When(@"User choose sub-category '(.*)'")]
@@ -44,7 +44,7 @@ namespace TestProjectEtsy.Steps.HotLineSteps
             var searchResultPage = new SearchResultPage();
             var category = new Category();
             _driver.WaitForElementToBeDisplayed(searchResultPage.SearchResultTitle);
-            category.GetSubCategoryOnSearchresultPage(subCategoryName);
+            category.GetSubCategoryOnSearchResultPage(subCategoryName);
         }
 
         [When(@"User choose filter '(.*)' for product")]
@@ -80,7 +80,6 @@ namespace TestProjectEtsy.Steps.HotLineSteps
                 {
                     actions.MoveToElement(searchResultPage.NextPage).Perform();
                     searchResultPage.NextPage.Click();
-
                 }
                 catch
                 {

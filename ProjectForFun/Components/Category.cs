@@ -4,18 +4,16 @@ namespace TestProjectEtsy.Components
 {
     public class Category : BaseComponent
     {
-        public IWebElement GetCategoryOnSearchresultPage(string categoryName)
+        public IWebElement GetCategoryOnSearchResultPage(string categoryName)
         {
-            return Driver.FindElement
-                (By.XPath($".//div[@class = 'search-sidebar__item content']//b[contains(text(), '{categoryName}')]"));
+            return Driver.FindElement(
+                By.XPath($".//div[@class = 'search-sidebar__item content']//b[contains(text(), '{categoryName}')]"));
         }
 
-        public IWebElement GetSubCategoryOnSearchresultPage(string subCategoryName)
+        public IWebElement GetSubCategoryOnSearchResultPage(string subCategoryName)
         {
-            return Driver.FindElement
-                (By.XPath
-                ($".//div[@class = 'search-sidebar__item content']" +
-                $"//div[@class = 'search-sidebar-catalogs__name link link--black' and contains(text(), '{subCategoryName}')]"));
+            return Driver.FindElement(By.XPath(
+                $".//div[@class = 'search-sidebar__item content']//div[@class = 'search-sidebar-catalogs__name link link--black' and contains(text(), '{subCategoryName}')]"));
         }
     }
 }

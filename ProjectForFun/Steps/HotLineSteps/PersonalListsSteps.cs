@@ -27,7 +27,7 @@ namespace TestProjectEtsy.Steps.HotLineSteps
         }
 
         [Then(@"User check product '(.*)' added to personal list ")]
-        public void UserCkeckProductAddedToPersonalList(string productName)
+        public void UserCheckProductAddedToPersonalList(string productName)
         {
             var personalListPage = new PersonalListPage();
             var anyProduct = personalListPage.ProductAddedToPersonalList.First(x => x.Text == productName);

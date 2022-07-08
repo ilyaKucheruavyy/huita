@@ -11,7 +11,7 @@ namespace TestProjectEtsy.Components
 
         public IWebElement GetParameterDropdown(string dropdownId, string parameterName)
         {
-            return Driver.FindElement(By.Xpath($".//div[@data-dropdown-id = '{dropdownId}']//li[contains(text(),'{parameterName}')]"));
+            return Driver.FindElement(By.XPath($".//div[@data-dropdown-id = '{dropdownId}']//li[contains(text(),'{parameterName}')]"));
         }
     }
 }

@@ -58,8 +58,8 @@ namespace TestProjectEtsy.Steps.BaseSteps
             Thread.Sleep(500);
         }
 
-        [When(@"User click on 'comparsion'")]
-        public void UserClickOnComprasion()
+        [When(@"User click on 'comparison'")]
+        public void UserClickOnComparison()
         {
             var comparePage = new ComparePage();
             comparePage.GoToComparisonButton.Click();
