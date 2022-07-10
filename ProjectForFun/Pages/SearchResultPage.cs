@@ -28,7 +28,7 @@ namespace TestProjectEtsy.Pages
         public IWebElement GetManufacturerFromSearchResultPage(string manufacturerName)
         {
             return Driver.FindElement(By.XPath(
-                $".//div[@class = 'search-sidebar-filter search-sidebar__item content']//div[@class = 'search-sidebar-checklist__item-name link link--black' and contains(text(),'{manufacturerName}')]/preceding-sibling::input"));
+                $".//div[contains(text(),'{manufacturerName}')]/preceding-sibling::input"));
         }
 
         public List<IWebElement> GetListFoundProduct()
@@ -39,7 +39,7 @@ namespace TestProjectEtsy.Pages
         public IWebElement GоToProductFromSearchResultPage(string productName)
         {
             return Driver.FindElement(By.XPath
-                ($".//div[@class = 'list-body']//div[@class = 'list-item__title-container m_b-5']//a[contains(text(),'{productName}')]"));
+                ($".//div[@class = 'list-item__title-container m_b-5']//a[contains(text(),'{productName}')]"));
         }
     }
 }
