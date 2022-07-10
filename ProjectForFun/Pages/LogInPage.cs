@@ -5,7 +5,7 @@ namespace TestProjectEtsy.Pages
 {
     public class LogInPage
     {
-        [FindsBy(How = How.XPath, Using = ".//div[@class = 'item-login']//span[2]")]
+        [FindsBy(How = How.XPath, Using = ".//div[@class = 'item-login']//span[@class = 'name ellipsis']")]
         public IWebElement LoginButton { get; set; }
 
         [FindsBy(How = How.XPath, Using = ".//div[@class = 'cell-12']//input[@type = 'text']")]

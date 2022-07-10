@@ -2,7 +2,6 @@
 using OpenQA.Selenium;
 using System.Linq;
 using TechTalk.SpecFlow;
-using TestProjectEtsy.Components;
 using TestProjectEtsy.Extensions;
 using TestProjectEtsy.Pages;
 
@@ -18,23 +17,22 @@ namespace TestProjectEtsy.Steps.HotLineSteps
             _driver = driver;
         }
 
-        [When(@"User delete product '(.*)' from comparison")]
-        public void UserDeleteProductFromComparsion(string productName)
+        [When(@"User delete '(.*)' product from comparison")]
+        public void WhenUserDeleteProductFromComparison(string productName)
         {
-            var item = new Item();
             var comparePage = new ComparePage();
             _driver.WaitForElementToBeDisplayed(comparePage.ComparsionHeader);
-            item.DeleteItemAddedToComparison(productName);
+            comparePage.DeleteItemAddedToComparison(productName).Click();
         }
 
-        [Then(@"User check product '(.*)' added to comparison")]
-        public void UserCheckProductAddedToComparison(string productName)
+        [Then(@"User check that '(.*)' product added to comparison is displayed")]
+        public void ThenUserCheckThatProductAddedToComparisonIsDisplayed(string productName)
         {
             var comparePage = new ComparePage();
             _driver.WaitForElementToBeDisplayed(comparePage.ComparsionHeader);
-            var anyProduct = comparePage.ComparedItems.First(x => x.Text == productName);
+            var someProduct = comparePage.ComparedItems.First(x => x.Text.Equals(productName));
 
-            Assert.IsTrue(anyProduct.Displayed, $"product {anyProduct} is not displayed on comparison page");
+            Assert.IsTrue(someProduct.Displayed, $"{someProduct} product is not displayed on comparison page");
         }
     }
 }

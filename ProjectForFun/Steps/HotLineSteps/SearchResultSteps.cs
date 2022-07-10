@@ -19,54 +19,53 @@ namespace TestProjectEtsy.Steps.HotLineSteps
             _driver = driver;
         }
 
-        [When(@"User choose manufacturer '(.*)'")]
-        public void UserChooseManufacturer(string manufacturerName)
+        [When(@"User select '(.*)' manufacturer")]
+        public void WhenUserSelectManufacturer(string manufacturerName)
         {
             var searchResultPage = new SearchResultPage();
-            var manufacturer = new Manufacturer();
             _driver.WaitForElementToBeDisplayed(searchResultPage.SearchResultTitle);
             searchResultPage.ShowAllManufacturer.Click();
-            manufacturer.GetManufacturerOnSearchResultPage(manufacturerName);
+            searchResultPage.GetManufacturerFromSearchResultPage(manufacturerName).Click();
         }
 
-        [When(@"User choose category '(.*)'")]
-        public void UserChooseCategory(string categoryName)
+        [When(@"User select '(.*)' category")]
+        public void WhenUserSelectCategory(string categoryName)
         {
             var searchResultPage = new SearchResultPage();
-            var category = new Category();
+            var categoryPage = new CategoryPage();
             _driver.WaitForElementToBeDisplayed(searchResultPage.SearchResultTitle);
-            category.GetCategoryOnSearchResultPage(categoryName);
+            categoryPage.GetCategoryFromSearchResultPage(categoryName).Click();
         }
 
-        [When(@"User choose sub-category '(.*)'")]
-        public void UserChooseSubCategory(string subCategoryName)
+        [When(@"User select '(.*)' sub-category")]
+        public void WhenUserSelectSubCategory(string subCategoryName)
         {
             var searchResultPage = new SearchResultPage();
-            var category = new Category();
+            var categoryPage = new CategoryPage();
             _driver.WaitForElementToBeDisplayed(searchResultPage.SearchResultTitle);
-            category.GetSubCategoryOnSearchResultPage(subCategoryName);
+            categoryPage.GetSubCategoryFromSearchResultPage(subCategoryName).Click();
         }
 
-        [When(@"User choose filter '(.*)' for product")]
-        public void UserChooseFilterForProduct(string filterName)
+        [When(@"User select '(.*)' filter for product")]
+        public void WhenUserSelectFilterForProduct(string filterName)
         {
             var searchResultPage = new SearchResultPage();
             var filtersMenu = new FiltersMenu();
             _driver.WaitForElementToBeDisplayed(searchResultPage.CategoryTitle);
-            filtersMenu.GetFilterCheckbox(filterName);
+            filtersMenu.GetFilterCheckbox(filterName).Click();
         }
 
-        [Then(@"User add product '(.*)' to compare")]
-        public void UserAddProductToCompare(string productName)
+        [When(@"User add '(.*)' product to compare")]
+        public void WhenUserAddProductToCompare(string productName)
         {
             var searchResultPage = new SearchResultPage();
             var compare = new Compare();
             _driver.WaitForElementToBeDisplayed(searchResultPage.CategoryTitle);
-            compare.GetCompareCheckboxForItem(productName);
+            compare.GetCompareCheckboxForItem(productName).Click(); 
         }
 
-        [When(@"User check found product '(.*)'")]
-        public void UserCheckFoundProduct(string productName)
+        [Then(@"User check that all displayed items has '(.*)' text in name")]
+        public void ThenUserCheckThatAllDisplayedItemsHasTextInName(string productName)
         {
             var searchResultPage = new SearchResultPage();
             var actions = new Actions(_driver);
@@ -90,7 +89,7 @@ namespace TestProjectEtsy.Steps.HotLineSteps
 
             foreach (var product in productsList)
             {
-                Assert.IsTrue(product.Text.Contains(productName));
+                Assert.IsTrue(product.Text.Contains(productName), $"{product} product not contains {productName}");
             }
         }
     }

@@ -15,8 +15,8 @@ namespace TestProjectEtsy.Steps.HotLineSteps
             _driver = driver;
         }
 
-        [When(@"User click on 'compare price' button")]
-        public void UserClickOnComparePriceButton()
+        [When(@"User clicks 'compare price' button")]
+        public void WhenUserClicksComparePriceButton()
         {
             var itemPage = new ItemPage();
             _driver.WaitForElementToBeDisplayed(itemPage.ItemPageHeader);
@@ -24,7 +24,7 @@ namespace TestProjectEtsy.Steps.HotLineSteps
         }
 
         [When(@"User add product to compare")]
-        public void UserAddProductToCompare()
+        public void WhenUserAddProductToCompare()
         {
             var itemPage = new ItemPage();
             _driver.WaitForElementToBeDisplayed(itemPage.ItemPageHeader);
@@ -32,12 +32,10 @@ namespace TestProjectEtsy.Steps.HotLineSteps
         }
 
         [When(@"User go to personal list")]
-        public void UserGoToPersonalList()
+        public void WhenUserGoToPersonalList()
         {
             var itemPage = new ItemPage();
-            var personalListPage = new PersonalListPage();
             itemPage.GoTolist.Click();
-            _driver.WaitForElementToBeDisplayed(personalListPage.PersonalListHeader);
         }
     }
 }

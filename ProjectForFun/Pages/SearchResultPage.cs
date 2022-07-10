@@ -25,9 +25,21 @@ namespace TestProjectEtsy.Pages
         [FindsBy(How = How.XPath, Using = ".//a[@class = 'page page--next']")]
         public IWebElement NextPage { get; set; }
 
+        public IWebElement GetManufacturerFromSearchResultPage(string manufacturerName)
+        {
+            return Driver.FindElement(By.XPath(
+                $".//div[@class = 'search-sidebar-filter search-sidebar__item content']//div[@class = 'search-sidebar-checklist__item-name link link--black' and contains(text(),'{manufacturerName}')]/preceding-sibling::input"));
+        }
+
         public List<IWebElement> GetListFoundProduct()
         {
             return Driver.FindElements(By.XPath(".//a[contains(@class,'list-item__title')]")).ToList();
+        }
+
+        public IWebElement GоToProductFromSearchResultPage(string productName)
+        {
+            return Driver.FindElement(By.XPath
+                ($".//div[@class = 'list-body']//div[@class = 'list-item__title-container m_b-5']//a[contains(text(),'{productName}')]"));
         }
     }
 }

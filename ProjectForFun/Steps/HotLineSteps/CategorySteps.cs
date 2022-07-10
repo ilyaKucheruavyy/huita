@@ -2,7 +2,6 @@
 using TechTalk.SpecFlow;
 using TestProjectEtsy.Pages;
 using TestProjectEtsy.Extensions;
-using TestProjectEtsy.Components;
 using NUnit.Framework;
 
 namespace TestProjectEtsy.Steps.HotLineSteps
@@ -18,23 +17,22 @@ namespace TestProjectEtsy.Steps.HotLineSteps
         }
 
         [When(@"User go to all categories")]
-        public void UserGoToAllCategories()
+        public void WhenUserGoToAllCategories()
         {
             var mainPage = new MainPage();
-            var categoryPage = new CategoryPage();
             mainPage.AllCategories.Click();
-            _driver.WaitForElementToBeDisplayed(categoryPage.CategoryHeader);
         }
 
-        [When(@"User choose category '(.*)'")]
-        public void UserSearchCategory(string categoryName)
+        [When(@"User select '(.*)' category")]
+        public void WhenUserSelectCategory(string categoryName)
         {
-            var autocomplete = new Autocomplete();
-            autocomplete.GetParameterOnCategoryPage(categoryName).Click();
+            var categoryPage = new CategoryPage();
+            _driver.WaitForElementToBeDisplayed(categoryPage.CategoryHeader);
+            categoryPage.GetOptionFromCategoryPage(categoryName).Click();
         }
 
         [Then(@"User sees category header")]
-        public void UserSeesCategoryHeader()
+        public void ThenUserSeesCategoryHeader()
         {
             var categoryPage = new CategoryPage();
             Assert.IsTrue(categoryPage.CategoryHeader.Displayed, $"Element {categoryPage.CategoryHeader} is not displayed");

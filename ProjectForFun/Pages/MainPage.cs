@@ -3,7 +3,7 @@ using SeleniumExtras.PageObjects;
 
 namespace TestProjectEtsy.Pages
 {
-    public class MainPage
+    public class MainPage : BasePage
     {
         [FindsBy(How = How.XPath, Using = ".//form[@id = 'search-form-main']//input[@id = 'doSearch']")]
         public IWebElement SubmitSearchButton { get; set; }
@@ -15,15 +15,29 @@ namespace TestProjectEtsy.Pages
         public IWebElement AllCategories { get; set; }
 
         [FindsBy(How = How.XPath, Using = ".//div[@class = 'header-logo']")]
-        public IWebElement Logo { get; set; }
+        public IWebElement HotlineLogo { get; set; }
 
         [FindsBy(How = How.XPath, Using = ".//div[@data-carousel= 'visited-carousel']//span[@class = 'title']")]
         public IWebElement ListOfViewedProduct { get; set; }
 
         [FindsBy(How = How.XPath, Using = ".//div[@class = 'city-link']/span")]
-        public IWebElement ChangeCityButton { get; set; }
+        public IWebElement SelectCityButton { get; set; }
 
         [FindsBy(How = How.XPath, Using = ".//div[@class = 'lightbox-hd']/p[contains(text(),'Зараз вказано')]")]
-        public IWebElement ChangeCityHeader { get; set; }
+        public IWebElement SelectCityHeader { get; set; }
+
+        [FindsBy(How = How.XPath, Using = ".//input[@id= 'searchbox']")]
+        public IWebElement SearchBar { get; set; }
+
+        [FindsBy(How = How.XPath, Using = ".//div[@class = 'item-compare']")]
+        public IWebElement GoToComparisonButton { get; set; }
+
+        [FindsBy(How = How.XPath, Using = ".//div[@class = 'item-wishlist']")]
+        public IWebElement GoToMyListsButton { get; set; }
+
+        public IWebElement GetOptionFromSelectCityWindow(string cityName)
+        {
+            return Driver.FindElement(By.XPath($".//div[@class = 'ui-menu-wrapper']//li[contains(text(),'{cityName}')]"));
+        }
     }
 }

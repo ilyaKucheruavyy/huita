@@ -4,7 +4,6 @@ using TestProjectEtsy.Pages;
 using TestProjectEtsy.Extensions;
 using NUnit.Framework;
 using System.Linq;
-using TestProjectEtsy.Components;
 
 namespace TestProjectEtsy.Steps.HotLineSteps
 {
@@ -12,28 +11,28 @@ namespace TestProjectEtsy.Steps.HotLineSteps
     public class PersonalListsSteps : SpecFlowContext
     {
         private readonly WebDriver _driver;
+
         public PersonalListsSteps (WebDriver driver)
         {
             _driver = driver;
         }
 
-        [When(@"User delete product '(.*)' from personal list")]
-        public void UserDeleteProductFromPersonalList(string productName)
+        [When(@"User delete '(.*)' product from personal list")]
+        public void WhenUserDeleteProductFromPersonalList(string productName)
         {
-            var item = new Item();
             var personalListPage = new PersonalListPage();
             _driver.WaitForElementToBeDisplayed(personalListPage.PersonalListHeader);
-            item.DeleteItemAddedToPersonalList(productName);
+            personalListPage.DeleteItemAddedToPersonalList(productName);
         }
 
-        [Then(@"User check product '(.*)' added to personal list ")]
-        public void UserCheckProductAddedToPersonalList(string productName)
+        [Then(@"User check that '(.*)' product added to personal list is displayed")]
+        public void ThenUserCheckThatProductAddedToPersonalListIsDisplayed(string productName)
         {
             var personalListPage = new PersonalListPage();
-            var anyProduct = personalListPage.ProductAddedToPersonalList.First(x => x.Text == productName);
+            var anyProduct = personalListPage.ProductAddedToPersonalList.First(x => x.Text.Equals(productName));
             _driver.WaitForElementToBeDisplayed(personalListPage.PersonalListHeader);
 
-            Assert.IsTrue(anyProduct.Displayed, $"Product {productName} is not displayed on personal list page");
+            Assert.IsTrue(anyProduct.Displayed, $"{productName} product is not displayed on personal list page");
         }
     }
 }

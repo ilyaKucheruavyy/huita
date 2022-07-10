@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using System.Threading;
 using TechTalk.SpecFlow;
 using TestProjectEtsy.Components;
 using TestProjectEtsy.Extensions;
@@ -11,13 +10,14 @@ namespace TestProjectEtsy.Steps.BaseSteps
     public class HotLineBaseSteps : SpecFlowContext
     {
         private readonly WebDriver _driver;
+
         public HotLineBaseSteps(WebDriver driver)
         {
             _driver = driver;
         }
 
-        [When(@"User click button '(.*)' in modal wimdow")]
-        public void UserClickButtonInModalWindow(string buttonName)
+        [When(@"User clicks '(.*)' button in modal window")]
+        public void WhenUserClicksButtonInModalWindow(string buttonName)
         {
             var itemPage = new ItemPage();
             var button = new Button();
@@ -25,59 +25,57 @@ namespace TestProjectEtsy.Steps.BaseSteps
             button.GetButtonByText(buttonName).Click();
         }
 
-        [When(@"User click on product '(.*)' on search result page")]
-        public void UserClickOnProductOnSearchResultPage(string productName)
+        [When(@"User clicks '(.*)' product from search result page")]
+        public void WhenUserClicksProductFormSearchResultPage(string productName)
         {
-            var item = new Item();
             var searchResultPage = new SearchResultPage();
             _driver.WaitForElementToBeDisplayed(searchResultPage.CategoryTitle);
-            item.GetToProductOnSearchResultPage(productName).Click();
+            searchResultPage.GоToProductFromSearchResultPage(productName).Click();
         }
 
-        [When(@"User use search bar '(.*)' for searching item '(.*)'")]
-        public void UserSearchItem(string placeholderIdentifier, string itemName)
-        {
-            var searchBar = new SearchBar();
-            searchBar.SearchBarByPlaceHolder(placeholderIdentifier).SendKeys(itemName);
-        }
-
-        [When(@"User choose parameter '(.*)' on dropdown '(.*)'")]
-        public void UserChooseParameterOnDropdown(string sortByName, string dropdownIdentifier)
-        {
-            var dropdown = new DropDown();
-            var searchResultPage = new SearchResultPage();
-            _driver.WaitForElementToBeDisplayed(searchResultPage.CategoryTitle);
-            dropdown.GetOptionsDropdown(dropdownIdentifier, sortByName);
-        }
-
-        [When(@"User click on 'my list'")]
-        public void UserClickOnMyList()
-        {
-            var personalListPage = new PersonalListPage();
-            personalListPage.GoToMyListsButton.Click();
-            Thread.Sleep(500);
-        }
-
-        [When(@"User click on 'comparison'")]
-        public void UserClickOnComparison()
-        {
-            var comparePage = new ComparePage();
-            comparePage.GoToComparisonButton.Click();
-            Thread.Sleep(500);
-        }
-
-        [When(@"User choose list '(.*)' on dropdown '(.*)'")]
-        public void UserChooseListOnDropdown(string listName, string dropdownId)
-        {
-            var dropdown = new DropDown();
-            dropdown.GetParameterDropdown(dropdownId, listName);
-        }
-
-        [When(@"User go to main menu")]
-        public void UserGoToMainMenu()
+        [When(@"User set '(.*)' text to search bar")]
+        public void WhenUserSetTextToSearchBar(string itemName)
         {
             var mainPage = new MainPage();
-            mainPage.Logo.Click();
+            mainPage.SearchBar.SendKeys(itemName);
+        }
+
+        [When(@"User select '(.*)' option from '(.*)' dropdown")]
+        public void WhenUserSelectOptionFromDropdown(string sortByName, string dropdownIdentifier)
+        {
+            var dropdown = new Dropdown();
+            var searchResultPage = new SearchResultPage();
+            _driver.WaitForElementToBeDisplayed(searchResultPage.CategoryTitle);
+            dropdown.GetOptionsFromDropdown(dropdownIdentifier, sortByName);
+        }
+
+        [When(@"User clicks button 'my list'")]
+        public void WhenUserClicksButtonMyList()
+        {
+            var mainPage = new MainPage();
+            mainPage.GoToMyListsButton.Click();
+
+        }
+
+        [When(@"User clicks button 'comparison'")]
+        public void WhenUserClicksButtonComparison()
+        {
+            var mainPage = new MainPage();
+            mainPage.GoToComparisonButton.Click();
+        }
+
+        [When(@"User select '(.*)' option on dropdown by id '(.*)'")]
+        public void WhenUserChooseListOnDropdownByID(string listName, string dropdownId)
+        {
+            var dropdown = new Dropdown();
+            dropdown.GetOptionsDropdownByDropdownId(dropdownId, listName);
+        }
+
+        [When(@"User go to main page through the logo")]
+        public void WhenUserGoToMainMenuThroughTheLogo()
+        {
+            var mainPage = new MainPage();
+            mainPage.HotlineLogo.Click();
         }
     }
 }
