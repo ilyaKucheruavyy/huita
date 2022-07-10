@@ -55,7 +55,7 @@ namespace TestProjectEtsy.Steps.HotLineSteps
             filtersMenu.GetFilterCheckbox(filterName).Click();
         }
 
-        [When(@"User add '(.*)' product to compare")]
+        [When(@"User add '(.*)' product to 'compare'")]
         public void WhenUserAddProductToCompare(string productName)
         {
             var searchResultPage = new SearchResultPage();
@@ -73,23 +73,23 @@ namespace TestProjectEtsy.Steps.HotLineSteps
 
             do
             {
-                productsList.AddRange(searchResultPage.GetListFoundProduct());
+                productsList.AddRange(searchResultPage.GetListOfTheFoundProduct());
                 _driver.WaitForElementToBeDisplayed(searchResultPage.CategoryTitle);
                 try
                 {
-                    actions.MoveToElement(searchResultPage.NextPage).Perform();
-                    searchResultPage.NextPage.Click();
+                    actions.MoveToElement(searchResultPage.NextPageArrow).Perform();
+                    searchResultPage.NextPageArrow.Click();
                 }
                 catch
                 {
                     break;
                 }
             }
-            while (searchResultPage.NextPage.Displayed);
+            while (searchResultPage.NextPageArrow.Displayed);
 
             foreach (var product in productsList)
             {
-                Assert.IsTrue(product.Text.Contains(productName), $"{product} product not contains {productName}");
+                Assert.IsTrue(product.Text.Contains(productName), $"'{product}' product not contains '{productName}' in name");
             }
         }
     }

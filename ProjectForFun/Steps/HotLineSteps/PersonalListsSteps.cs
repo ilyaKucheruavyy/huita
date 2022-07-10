@@ -17,22 +17,22 @@ namespace TestProjectEtsy.Steps.HotLineSteps
             _driver = driver;
         }
 
-        [When(@"User delete '(.*)' product from personal list")]
+        [When(@"User delete '(.*)' product from 'personal list'")]
         public void WhenUserDeleteProductFromPersonalList(string productName)
         {
             var personalListPage = new PersonalListPage();
             _driver.WaitForElementToBeDisplayed(personalListPage.PersonalListHeader);
-            personalListPage.DeleteItemAddedToPersonalList(productName);
+            personalListPage.DeleteItemAddedToPersonalList(productName).Click();
         }
 
-        [Then(@"User check that '(.*)' product added to personal list is displayed")]
-        public void ThenUserCheckThatProductAddedToPersonalListIsDisplayed(string productName)
+        [Then(@"User check that '(.*)' product that added to personal list is displayed")]
+        public void ThenUserCheckThatProductThatAddedToPersonalListIsDisplayed(string productName)
         {
             var personalListPage = new PersonalListPage();
             var anyProduct = personalListPage.ProductAddedToPersonalList.First(x => x.Text.Equals(productName));
             _driver.WaitForElementToBeDisplayed(personalListPage.PersonalListHeader);
 
-            Assert.IsTrue(anyProduct.Displayed, $"{productName} product is not displayed on personal list page");
+            Assert.IsTrue(anyProduct.Displayed, $"'{productName}' product is not displayed on personal list page");
         }
     }
 }

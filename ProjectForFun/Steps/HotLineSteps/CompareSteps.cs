@@ -25,23 +25,23 @@ namespace TestProjectEtsy.Steps.HotLineSteps
             comparePage.DeleteItemAddedToComparison(productName).Click();
         }
 
-        [Then(@"User check that '(.*)' product added to comparison is displayed")]
-        public void ThenUserCheckThatProductAddedToComparisonIsDisplayed(string productName)
+        [Then(@"User check that '(.*)' product that added to comparison is displayed")]
+        public void ThenUserCheckThatProductThatAddedToComparisonIsDisplayed(string productName)
         {
             var comparePage = new ComparePage();
             _driver.WaitForElementToBeDisplayed(comparePage.ComparsionHeader);
             var someProduct = comparePage.ComparedItems.First(x => x.Text.Equals(productName));
 
-            Assert.IsTrue(someProduct.Displayed, $"{someProduct} product is not displayed on comparison page");
+            Assert.IsTrue(someProduct.Displayed, $"'{someProduct}' product is not displayed on comparison page");
         }
 
-        [Then(@"User sees tabs header of 'compare price'")]
-        public void ThenUserSeesTabsHeaderOfComparePrice()
+        [Then(@"User sees list of the market with price for selected product")]
+        public void ThenUserSeesListOfTheMarketWithPriceForSelectedProduct()
         {
             var itemPage = new ItemPage();
-            _driver.WaitForElementToBeDisplayed(itemPage.TabsHeader);
+            _driver.WaitForElementToBeDisplayed(itemPage.ItemPageHeader);
 
-            Assert.IsTrue(itemPage.TabsHeader.Displayed, $"{itemPage.TabsHeader} is not displayed");
+            Assert.IsTrue(itemPage.ListOfTheMarkets.Displayed, $"'{itemPage.ListOfTheMarkets}' is not displayed");
         }
     }
 }

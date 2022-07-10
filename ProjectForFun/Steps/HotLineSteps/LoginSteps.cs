@@ -19,7 +19,7 @@ namespace TestProjectEtsy.Steps.EtsySteps
         [When(@"User login with '(.*)' email and '(.*)' password")]
         public void WhenUserLoginWithEmailAndPassword(string email, string password)
         {
-            var logInPage = new LogInPage();
+            var logInPage = new LoginPage();
             logInPage.LoginButton.Click();
             _driver.WaitForElementToBeDisplayed(logInPage.EmailField);
             logInPage.EmailField.SendKeys(email);
@@ -30,9 +30,9 @@ namespace TestProjectEtsy.Steps.EtsySteps
         [Then(@"User sees '(.*)' nickname instead of 'login' button")]
         public void ThenUserSeesNicknameInsteadOfLoginButton(string userNickname)
         {
-            var logInPage = new LogInPage();
+            var logInPage = new LoginPage();
             Assert.AreEqual(logInPage.LoginButton.Text, userNickname, 
-                $"Actual result {logInPage.LoginButton.Text} not equals to expected result {userNickname}");
+                $"Actual result '{logInPage.LoginButton.Text}' not equals to expected result '{userNickname}'");
         }
     }
 }

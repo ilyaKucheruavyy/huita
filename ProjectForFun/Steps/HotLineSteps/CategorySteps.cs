@@ -23,19 +23,19 @@ namespace TestProjectEtsy.Steps.HotLineSteps
             mainPage.AllCategories.Click();
         }
 
-        [When(@"User select '(.*)' category")]
-        public void WhenUserSelectCategory(string categoryName)
+        [When(@"User select '(.*)' category from autocomplete")]
+        public void WhenUserSelectCategoryFromAutocomplete(string categoryName)
         {
             var categoryPage = new CategoryPage();
             _driver.WaitForElementToBeDisplayed(categoryPage.CategoryHeader);
-            categoryPage.GetOptionFromCategoryPage(categoryName).Click();
+            categoryPage.GetOptionFromCategoryAutocomplete(categoryName).Click();
         }
 
         [Then(@"User sees category header")]
         public void ThenUserSeesCategoryHeader()
         {
             var categoryPage = new CategoryPage();
-            Assert.IsTrue(categoryPage.CategoryHeader.Displayed, $"Element {categoryPage.CategoryHeader} is not displayed");
+            Assert.IsTrue(categoryPage.CategoryHeader.Displayed, $"Element '{categoryPage.CategoryHeader}' is not displayed");
         }
     }
 }

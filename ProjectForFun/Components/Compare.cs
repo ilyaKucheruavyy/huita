@@ -8,7 +8,7 @@ namespace TestProjectEtsy.Components
         {
             return Driver.FindElement
             (By.XPath
-                ($".//div[contains(@class, 'title-container')]//a[contains(text(),'{productName}')]//..//..//preceding-sibling::div//input"));
+                ($".//a[contains(text(),'{productName}')]//..//..//preceding-sibling::div//input"));
         }
     }
 }

@@ -23,7 +23,7 @@ namespace TestProjectEtsy.Pages
         public IWebElement SelectedFilters { get; set; }
 
         [FindsBy(How = How.XPath, Using = ".//a[@class = 'page page--next']")]
-        public IWebElement NextPage { get; set; }
+        public IWebElement NextPageArrow { get; set; }
 
         public IWebElement GetManufacturerFromSearchResultPage(string manufacturerName)
         {
@@ -31,7 +31,7 @@ namespace TestProjectEtsy.Pages
                 $".//div[contains(text(),'{manufacturerName}')]/preceding-sibling::input"));
         }
 
-        public List<IWebElement> GetListFoundProduct()
+        public List<IWebElement> GetListOfTheFoundProduct()
         {
             return Driver.FindElements(By.XPath(".//a[contains(@class,'list-item__title')]")).ToList();
         }

@@ -25,7 +25,7 @@ namespace TestProjectEtsy.Steps.BaseSteps
             button.GetButtonByText(buttonName).Click();
         }
 
-        [When(@"User clicks '(.*)' product from search result page")]
+        [When(@"User clicks '(.*)' product from 'search result page'")]
         public void WhenUserClicksProductFormSearchResultPage(string productName)
         {
             var searchResultPage = new SearchResultPage();
@@ -33,7 +33,7 @@ namespace TestProjectEtsy.Steps.BaseSteps
             searchResultPage.GоToProductFromSearchResultPage(productName).Click();
         }
 
-        [When(@"User set '(.*)' text to search bar")]
+        [When(@"User set '(.*)' text to 'search bar'")]
         public void WhenUserSetTextToSearchBar(string itemName)
         {
             var mainPage = new MainPage();
@@ -49,30 +49,29 @@ namespace TestProjectEtsy.Steps.BaseSteps
             dropdown.GetOptionsFromDropdown(dropdownIdentifier, sortByName);
         }
 
-        [When(@"User clicks button 'my list'")]
+        [When(@"User clicks 'my list' button")]
         public void WhenUserClicksButtonMyList()
         {
             var mainPage = new MainPage();
             mainPage.GoToMyListsButton.Click();
-
         }
 
-        [When(@"User clicks button 'comparison'")]
+        [When(@"User clicks 'comparison' button")]
         public void WhenUserClicksButtonComparison()
         {
             var mainPage = new MainPage();
             mainPage.GoToComparisonButton.Click();
         }
 
-        [When(@"User select '(.*)' option on dropdown by id '(.*)'")]
-        public void WhenUserChooseListOnDropdownByID(string listName, string dropdownId)
+        [When(@"User select '(.*)' option form dropdown by id '(.*)'")]
+        public void WhenUserSelectListFromDropdownByID(string listName, string dropdownId)
         {
             var dropdown = new Dropdown();
-            dropdown.GetOptionsDropdownByDropdownId(dropdownId, listName);
+            dropdown.GetOptionsFromDropdownByDropdownId(dropdownId, listName);
         }
 
         [When(@"User go to main page through the logo")]
-        public void WhenUserGoToMainMenuThroughTheLogo()
+        public void WhenUserGoToMainPageThroughTheLogo()
         {
             var mainPage = new MainPage();
             mainPage.HotlineLogo.Click();

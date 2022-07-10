@@ -3,7 +3,7 @@ using SeleniumExtras.PageObjects;
 
 namespace TestProjectEtsy.Pages
 {
-    public class LogInPage
+    public class LoginPage
     {
         [FindsBy(How = How.XPath, Using = ".//div[@class = 'item-login']//span[@class = 'name ellipsis']")]
         public IWebElement LoginButton { get; set; }

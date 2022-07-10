@@ -23,7 +23,7 @@ namespace TestProjectEtsy.Steps.HotLineSteps
             itemPage.ComparePriceButton.Click();
         }
 
-        [When(@"User add product to compare")]
+        [When(@"User add product to 'compare'")]
         public void WhenUserAddProductToCompare()
         {
             var itemPage = new ItemPage();
@@ -31,7 +31,7 @@ namespace TestProjectEtsy.Steps.HotLineSteps
             itemPage.AddToCompareButton.Click();
         }
 
-        [When(@"User go to personal list")]
+        [When(@"User go to 'personal list'")]
         public void WhenUserGoToPersonalList()
         {
             var itemPage = new ItemPage();

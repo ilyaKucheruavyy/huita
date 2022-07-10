@@ -8,7 +8,7 @@ namespace TestProjectEtsy.Pages
         [FindsBy(How = How.XPath, Using = ".//div[@class = 'viewbox']/p")]
         public IWebElement CategoryHeader { get; set; }
 
-        public IWebElement GetOptionFromCategoryPage(string categoryName)
+        public IWebElement GetOptionFromCategoryAutocomplete(string categoryName)
         {
             return Driver.FindElement(By.XPath($".//div[@class = 'ui-menu-wrapper']//div[contains(text(),'{categoryName}')]"));
         }
@@ -22,7 +22,7 @@ namespace TestProjectEtsy.Pages
         public IWebElement GetSubCategoryFromSearchResultPage(string subCategoryName)
         {
             return Driver.FindElement(By.XPath(
-                $".//div[@class = 'search-sidebar__item content']//div[@class = 'search-sidebar-catalogs__name link link--black' and contains(text(), '{subCategoryName}')]"));
+                $".//div[contains(@class, 'catalogs__name') and contains(text(), '{subCategoryName}')]"));
         }
     }
 }

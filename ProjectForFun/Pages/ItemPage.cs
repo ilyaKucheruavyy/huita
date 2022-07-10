@@ -27,7 +27,7 @@ namespace TestProjectEtsy.Pages
         [FindsBy(How = How.XPath, Using = ".//div[@class = 'modal__title']")]
         public IWebElement ModalWindowHeader { get; set; }
 
-        [FindsBy(How = How.XPath, Using = ".//div[@class = 'tabs-header']")]
-        public IWebElement TabsHeader { get; set; }
+        [FindsBy(How = How.XPath, Using = ".//div[contains(@class, 'filters flex')]")]
+        public IWebElement ListOfTheMarkets { get; set; }
     }
 }

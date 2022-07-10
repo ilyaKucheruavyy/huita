@@ -35,7 +35,7 @@ namespace TestProjectEtsy.Steps.HotLineSteps
         public void ThenUserSeesSelectCityHeader()
         {
             var mainPage = new MainPage();
-            Assert.IsTrue(mainPage.SelectCityHeader.Displayed, $"Element {mainPage.SelectCityHeader} is not displayed");
+            Assert.IsTrue(mainPage.SelectCityHeader.Displayed, $"Element '{mainPage.SelectCityHeader}' is not displayed");
         }
 
         [Then(@"User sees '(.*)' city in geo tag")]
@@ -43,7 +43,7 @@ namespace TestProjectEtsy.Steps.HotLineSteps
         {
             var mainPage = new MainPage();
             Assert.AreEqual(mainPage.SelectCityButton.Text, cityName, 
-                $"Actual result {mainPage.SelectCityButton.Text} not equals to expected result {cityName}");
+                $"Actual result '{mainPage.SelectCityButton.Text}' not equals to expected result '{cityName}'");
         }
     }
 }
