@@ -34,5 +34,14 @@ namespace TestProjectEtsy.Steps.HotLineSteps
 
             Assert.IsTrue(someProduct.Displayed, $"{someProduct} product is not displayed on comparison page");
         }
+
+        [Then(@"User sees tabs header of 'compare price'")]
+        public void ThenUserSeesTabsHeaderOfComparePrice()
+        {
+            var itemPage = new ItemPage();
+            _driver.WaitForElementToBeDisplayed(itemPage.TabsHeader);
+
+            Assert.IsTrue(itemPage.TabsHeader.Displayed, $"{itemPage.TabsHeader} is not displayed");
+        }
     }
 }
