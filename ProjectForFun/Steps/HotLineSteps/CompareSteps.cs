@@ -35,8 +35,8 @@ namespace TestProjectEtsy.Steps.HotLineSteps
             Assert.IsTrue(someProduct.Displayed, $"'{someProduct}' product is not displayed on comparison page");
         }
 
-        [Then(@"User sees list of the market with price for selected product")]
-        public void ThenUserSeesListOfTheMarketWithPriceForSelectedProduct()
+        [Then(@"User sees list of the market with prices for selected product")]
+        public void ThenUserSeesListOfTheMarketWithPricesForSelectedProduct()
         {
             var itemPage = new ItemPage();
             _driver.WaitForElementToBeDisplayed(itemPage.ItemPageHeader);

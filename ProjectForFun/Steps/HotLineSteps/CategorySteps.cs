@@ -16,7 +16,7 @@ namespace TestProjectEtsy.Steps.HotLineSteps
             _driver = driver;
         }
 
-        [When(@"User go to all categories")]
+        [When(@"User go to 'all categories'")]
         public void WhenUserGoToAllCategories()
         {
             var mainPage = new MainPage();

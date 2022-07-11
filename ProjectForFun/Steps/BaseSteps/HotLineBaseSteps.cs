@@ -25,8 +25,8 @@ namespace TestProjectEtsy.Steps.BaseSteps
             button.GetButtonByText(buttonName).Click();
         }
 
-        [When(@"User clicks '(.*)' product from 'search result page'")]
-        public void WhenUserClicksProductFormSearchResultPage(string productName)
+        [When(@"User clicks '(.*)' product from 'search result' page")]
+        public void WhenUserClicksProductFromSearchResultPage(string productName)
         {
             var searchResultPage = new SearchResultPage();
             _driver.WaitForElementToBeDisplayed(searchResultPage.CategoryTitle);
@@ -46,28 +46,28 @@ namespace TestProjectEtsy.Steps.BaseSteps
             var dropdown = new Dropdown();
             var searchResultPage = new SearchResultPage();
             _driver.WaitForElementToBeDisplayed(searchResultPage.CategoryTitle);
-            dropdown.GetOptionsFromDropdown(dropdownIdentifier, sortByName);
+            dropdown.GetOptionsFromDropdown(dropdownIdentifier, sortByName).Click();
         }
 
         [When(@"User clicks 'my list' button")]
-        public void WhenUserClicksButtonMyList()
+        public void WhenUserClicksMyListButton()
         {
             var mainPage = new MainPage();
             mainPage.GoToMyListsButton.Click();
         }
 
         [When(@"User clicks 'comparison' button")]
-        public void WhenUserClicksButtonComparison()
+        public void WhenUserClicksComparisonButton()
         {
             var mainPage = new MainPage();
             mainPage.GoToComparisonButton.Click();
         }
 
         [When(@"User select '(.*)' option form dropdown by id '(.*)'")]
-        public void WhenUserSelectListFromDropdownByID(string listName, string dropdownId)
+        public void WhenUserSelectOptionFromDropdownByID(string listName, string dropdownId)
         {
             var dropdown = new Dropdown();
-            dropdown.GetOptionsFromDropdownByDropdownId(dropdownId, listName);
+            dropdown.GetOptionsFromDropdownByDropdownId(dropdownId, listName).Click();
         }
 
         [When(@"User go to main page through the logo")]
