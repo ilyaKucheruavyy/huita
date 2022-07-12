@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using System;
+using System.Threading;
 
 namespace TestProjectEtsy.Steps.BaseSteps
 {
@@ -16,19 +17,22 @@ namespace TestProjectEtsy.Steps.BaseSteps
         }
 
         [Given(@"User go to '(.*)'")]
-        public void GivenUserGoToEtsy(string environment)
+        public void GivenUserGoTo(string environment)
         { 
             switch(environment)
             {
-                case "etsyEnv":
-                    _driver.Navigate().GoToUrl(EnvironmentProvider.EtsyEnv);
+                case "HotLineEnv":
+                    _driver.Navigate().GoToUrl(EnvironmentProvider.HotLineEnv);
                     break;
-                case "secondEnv":
-                    _driver.Navigate().GoToUrl(EnvironmentProvider.SecondEnv);
-                        break;
-                    default:
+                default:
                     throw new Exception($"{environment} is not exsist");
             }
+        }
+
+        [When(@"User waits '(.*)' second")]
+        public void WhenUserWaitsSecond(int second)
+        {
+            Thread.Sleep(second*1000);
         }
     }
 }

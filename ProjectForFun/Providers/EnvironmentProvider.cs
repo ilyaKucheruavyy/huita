@@ -5,7 +5,6 @@ namespace TestProjectEtsy.Providers
 {
     public static class EnvironmentProvider
     {
-        public static string EtsyEnv => Config.Read.ByKey("etsyEnv");
-        public static string SecondEnv => Config.Read.ByKey("secondEnv");
+        public static string HotLineEnv => Config.Read.ByKey("HotLineEnv");
     }
 }

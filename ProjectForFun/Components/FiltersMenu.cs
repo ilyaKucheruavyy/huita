@@ -6,7 +6,8 @@ namespace TestProjectEtsy.Components
     {
         public IWebElement GetFilterCheckbox(string filterName)
         {
-            return Driver.FindElement(By.XPath($".//div[@class = 'sidebar-filter__body']//div[contains(text(),'{filterName}')]//preceding-sibling::input"));
+            return Driver.FindElement(By.XPath
+                ($".//div[@class = 'sidebar-filter__body']//div[contains(text(),'{filterName}')]//preceding-sibling::input"));
         }
     }
 }
