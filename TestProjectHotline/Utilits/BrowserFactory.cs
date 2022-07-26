@@ -19,7 +19,7 @@ namespace TestProjectHotline.Helper
                 case "chrome":
                     var chromeOptions = new ChromeOptions();
                     chromeOptions.AddArgument("--safebrowsing-disable-download-protection");
-
+                    chromeOptions.AddArgument("--disable-site-isolation-trials");
                     chromeOptions.AddUserProfilePreference("download.prompt_for_download", false);
                     chromeOptions.AddUserProfilePreference("download.directory_upgrade", true);
                     chromeOptions.AddUserProfilePreference("safebrowsing.enabled", false);
@@ -27,7 +27,7 @@ namespace TestProjectHotline.Helper
                     //options.UseSpecCompliantProtocol = false;
                     chromeOptions.SetLoggingPreference(LogType.Browser, LogLevel.All);
 
-                    var driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), chromeOptions);
+                    var driver = new ChromeDriver(@"E:/TestProjectHotline/TestProjectHotline/bin/Debug/net5.0/", chromeOptions);
 
                     return driver;
 

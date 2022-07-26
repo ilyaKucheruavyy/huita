@@ -1,7 +1,9 @@
-﻿using OpenQA.Selenium;
+﻿using System.Threading;
+using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using TestProjectHotline.Extensions;
 using NUnit.Framework;
+using OpenQA.Selenium.Interactions;
 using TestProjectHotline.Components;
 using TestProjectHotline.Pages;
 
@@ -20,24 +22,30 @@ namespace TestProjectHotline.Steps.HotLineSteps
         [When(@"User go to 'all categories'")]
         public void WhenUserGoToAllCategories()
         {
-            var mainPage = new MainPage();
-            mainPage.AllCategories.Click();
+            var actions = new Actions(_driver);
+            var mainPage = _driver.GetPage<MainPage>();
+            _driver.WaitForElementToBeDisplayed(mainPage.AllCategories);
+            mainPage.MoveToAllCategories();
+            
+
+            mainPage.ClickOnAllCategory();
         }
 
         [When(@"User select '(.*)' category by '(.*)' item name from autocomplete")]
         public void WhenUserSelectCategoryFromAutocomplete(string categoryName, string itemName)
         {
-            var categoryPage = new CategoryPage();
+            var categoryPage = _driver.GetPage<CategoryPage>();
             _driver.WaitForElementToBeDisplayed(categoryPage.CategoryHeader);
             categoryPage.SerchBarForCategory.SendKeys(itemName);
+            _driver.WaitForElementToBeDisplayed(categoryPage.GetListOfCategory);
             categoryPage.GetOptionFromCategoryAutocomplete(categoryName).Click();
         }
 
         [Then(@"User sees category header")]
         public void ThenUserSeesCategoryHeader()
         {
-            var categoryPage = new CategoryPage();
-            Assert.IsTrue(categoryPage.CategoryHeader.Displayed, "Category header on 'search result' page is not displayed");
+            var searchResultPage = _driver.GetPage<SearchResultPage>();
+            Assert.IsTrue(searchResultPage.CategoryTitle.Displayed, "Category header on 'search result' page is not displayed");
         }
     }
 }

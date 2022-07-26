@@ -20,7 +20,7 @@ namespace TestProjectHotline.Steps.HotLineSteps
         [When(@"User delete '(.*)' product from 'personal list'")]
         public void WhenUserDeleteProductFromPersonalList(string productName)
         {
-            var personalListPage = new PersonalListPage();
+            var personalListPage = _driver.GetPage<PersonalListPage>();
             _driver.WaitForElementToBeDisplayed(personalListPage.PersonalListHeader);
             personalListPage.DeleteItemAddedToPersonalList(productName).Click();
         }
@@ -28,11 +28,12 @@ namespace TestProjectHotline.Steps.HotLineSteps
         [Then(@"User check that '(.*)' product that added to personal list is displayed")]
         public void ThenUserCheckThatProductThatAddedToPersonalListIsDisplayed(string productName)
         {
-            var personalListPage = new PersonalListPage();
-            var anyProduct = personalListPage.ProductAddedToPersonalList.First(x => x.Text.Equals(productName));
+            var personalListPage = _driver.GetPage<PersonalListPage>();
             _driver.WaitForElementToBeDisplayed(personalListPage.PersonalListHeader);
+            //var anyProduct = personalListPage.ProductAddedToPersonalList.Single(x => 
+            //    x.Text.Equals(productName));
 
-            Assert.IsTrue(anyProduct.Displayed, $"'{productName}' product is not displayed on personal list page");
+            Assert.IsTrue(personalListPage.ProductAddedToPersonalLIst(productName).Displayed, "Product is not displayed on personal list page");
         }
     }
 }

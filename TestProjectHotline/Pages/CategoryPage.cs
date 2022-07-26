@@ -11,9 +11,12 @@ namespace TestProjectHotline.Pages
         [FindsBy(How = How.XPath, Using = ".//input[@role = 'textbox']")]
         public IWebElement SerchBarForCategory { get; set; }
 
+        [FindsBy(How = How.XPath, Using = ".//div[contains(@class,'wrapper active')]")]
+        public IWebElement GetListOfCategory { get; set; }
+
         public IWebElement GetOptionFromCategoryAutocomplete(string categoryName)
         {
-            return Driver.FindElement(By.XPath($".//div[@class = 'ui-menu-wrapper']//div[contains(text(),'{categoryName}')]"));
+            return Driver.FindElement(By.XPath($".//div[@class = 'ui-menu-wrapper active']//div[contains(text(),'{categoryName}')]"));
         }
 
         public IWebElement GetCategoryFromSearchResultPage(string categoryName)

@@ -19,12 +19,10 @@ namespace TestProjectHotline.Steps.EtsySteps
         [When(@"User login with '(.*)' email and '(.*)' password")]
         public void WhenUserLoginWithEmailAndPassword(string email, string password)
         {
-            var logInPage = new LoginPage();
-            var mainPage = new MainPage();
+            var logInPage = _driver.GetPage<LoginPage>();
             _driver.WaitForElementToBeDisplayed(logInPage.LoginButton);
-
-            _driver.UserClicks(".//div[@class = 'item-login']/a");
-            _driver.WaitForElementToBeDisplayed(logInPage.EmailField);
+            logInPage.LoginButton.Click();
+            _driver.WaitForElementToBeDisplayed(logInPage.LoginTitle);
             logInPage.EmailField.SendKeys(email);
             logInPage.PasswordField.SendKeys(password);
             logInPage.SubmitButton.Click();
@@ -33,8 +31,8 @@ namespace TestProjectHotline.Steps.EtsySteps
         [Then(@"User sees '(.*)' nickname instead of 'login' button")]
         public void ThenUserSeesNicknameInsteadOfLoginButton(string userNickname)
         {
-            var logInPage = new LoginPage();
-            var mainPage = new MainPage();
+            var logInPage = _driver.GetPage<LoginPage>();
+            var mainPage = _driver.GetPage<MainPage>();
             _driver.WaitForElementToBeDisplayed(mainPage.HotlineLogo);
             Assert.AreEqual(logInPage.NickName.Text, userNickname, 
                 $"Actual result '{logInPage.NickName.Text}' not equals to expected result '{userNickname}'");

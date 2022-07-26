@@ -2,6 +2,7 @@
 using SeleniumExtras.PageObjects;
 using System.Collections.Generic;
 using System.Linq;
+using TestProjectHotline.Extensions;
 
 namespace TestProjectHotline.Pages
 {
@@ -10,7 +11,7 @@ namespace TestProjectHotline.Pages
         [FindsBy(How = How.XPath, Using = ".//div[@class = 'search__title']")]
         public IWebElement SearchResultTitle { get; set; }
 
-        [FindsBy(How = How.XPath, Using = ".//div[@class = 'catalog-title']//h1")]
+        [FindsBy(How = How.XPath, Using = ".//h1[contains(@class,'catalog-title')]")]
         public IWebElement CategoryTitle { get; set; }
 
         [FindsBy(How = How.XPath, Using = ".//div[@class = 'search-sidebar-checklist__collapse link']")]
@@ -25,15 +26,26 @@ namespace TestProjectHotline.Pages
         [FindsBy(How = How.XPath, Using = ".//a[@class = 'page page--next']")]
         public IWebElement NextPageArrow { get; set; }
 
-        public IWebElement GetManufacturerFromSearchResultPage(string manufacturerName)
+        [FindsBy(How = How.XPath, Using = ".//div[contains(@class,'search-sidebar-filter search-sidebar__item')]")]
+        public IWebElement ManufacturerSection { get; set; }
+
+        public void GetManufacturerFromSearchResultPage(string manufacturerName)
         {
-            return Driver.FindElement(By.XPath(
-                $".//div[contains(text(),'{manufacturerName}')]/preceding-sibling::input"));
+            Driver.UserClicks(
+                $".//div[contains(text(),'{manufacturerName}')]/preceding-sibling::input");
         }
 
-        public List<IWebElement> GetListOfTheFoundProduct()
+        public IList<string> GetListOfTheFoundProduct()
         {
-            return Driver.FindElements(By.XPath(".//a[contains(@class,'list-item__title')]")).ToList();
+            List<string> a = new List<string>();
+
+            var listProduct =  Driver.FindElements(By.XPath(".//a[contains(@class,'list-item__title')]")).ToList();
+            foreach (var product in listProduct )
+            {
+                a.Add(product.Text);
+            }
+
+            return a;
         }
 
         public IWebElement GоToProductFromSearchResultPage(string productName)

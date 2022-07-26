@@ -17,8 +17,8 @@ namespace TestProjectHotline.Components
 
         public IWebElement GetOptionsFromDropdownByDropdownClass(string dropdownId, string optionName)
         {
-            return Driver.FindElements(By.XPath($".//div[contains(@class, 'item-{dropdownId}')]//a"))
-                .First(x => x.Text.Equals(optionName));
+            return Driver.FindElement(
+                By.XPath($".//div[contains(@class, 'item-{dropdownId}')]//a[contains(text(),'{optionName}')]"));
         }
     }
 }

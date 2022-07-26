@@ -1,14 +1,13 @@
 ﻿using OpenQA.Selenium;
+using TestProjectHotline.Extensions;
 
 namespace TestProjectHotline.Components
 {
     public class Compare : BaseComponent
     {
-        public IWebElement GetCompareCheckboxForItem(string productName)
+        public void GetCompareCheckboxForItem(string productName)
         {
-            return Driver.FindElement
-            (By.XPath
-                ($".//a[contains(text(),'{productName}')]//..//..//preceding-sibling::div//input"));
+            Driver.UserClicks($".//a[contains(text(),'{productName}')]//..//..//preceding-sibling::div//input");
         }
     }
 }

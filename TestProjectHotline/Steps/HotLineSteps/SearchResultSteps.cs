@@ -3,6 +3,7 @@ using TechTalk.SpecFlow;
 using TestProjectHotline.Extensions;
 using OpenQA.Selenium.Interactions;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using NUnit.Framework;
 using TestProjectHotline.Components;
 using TestProjectHotline.Pages;
@@ -22,17 +23,23 @@ namespace TestProjectHotline.Steps.HotLineSteps
         [When(@"User select '(.*)' manufacturer")]
         public void WhenUserSelectManufacturer(string manufacturerName)
         {
-            var searchResultPage = new SearchResultPage();
+            var searchResultPage = _driver.GetPage<SearchResultPage>();
             _driver.WaitForElementToBeDisplayed(searchResultPage.SearchResultTitle);
-            searchResultPage.ShowAllManufacturer.Click();
-            searchResultPage.GetManufacturerFromSearchResultPage(manufacturerName).Click();
+            try
+            {
+                searchResultPage.ShowAllManufacturer.Click();
+            }
+            catch
+            {
+                searchResultPage.GetManufacturerFromSearchResultPage(manufacturerName);
+            }
         }
 
         [When(@"User select '(.*)' category")]
         public void WhenUserSelectCategory(string categoryName)
         {
-            var searchResultPage = new SearchResultPage();
-            var categoryPage = new CategoryPage();
+            var searchResultPage = _driver.GetPage<SearchResultPage>();
+            var categoryPage = _driver.GetPage<CategoryPage>();
             _driver.WaitForElementToBeDisplayed(searchResultPage.SearchResultTitle);
             categoryPage.GetCategoryFromSearchResultPage(categoryName).Click();
         }
@@ -40,8 +47,8 @@ namespace TestProjectHotline.Steps.HotLineSteps
         [When(@"User select '(.*)' sub-category")]
         public void WhenUserSelectSubCategory(string subCategoryName)
         {
-            var searchResultPage = new SearchResultPage();
-            var categoryPage = new CategoryPage();
+            var searchResultPage = _driver.GetPage<SearchResultPage>();
+            var categoryPage = _driver.GetPage<CategoryPage>();
             _driver.WaitForElementToBeDisplayed(searchResultPage.SearchResultTitle);
             categoryPage.GetSubCategoryFromSearchResultPage(subCategoryName).Click();
         }
@@ -49,54 +56,55 @@ namespace TestProjectHotline.Steps.HotLineSteps
         [When(@"User select '(.*)' filter for product")]
         public void WhenUserSelectFilterForProduct(string filterName)
         {
-            var searchResultPage = new SearchResultPage();
-            var filtersMenu = new FiltersMenu();
+            var searchResultPage = _driver.GetPage<SearchResultPage>();
+            var filtersMenu = _driver.GetComponent<FiltersMenu>();
             _driver.WaitForElementToBeDisplayed(searchResultPage.CategoryTitle);
-            filtersMenu.GetFilterCheckbox(filterName).Click();
+            filtersMenu.GetFilterCheckbox(filterName);
         }
 
         [When(@"User add '(.*)' product to 'compare'")]
         public void WhenUserAddProductToCompare(string productName)
         {
-            var searchResultPage = new SearchResultPage();
-            var compare = new Compare();
+            var searchResultPage = _driver.GetPage<SearchResultPage>();
+            var compare = _driver.GetComponent<Compare>();
             _driver.WaitForElementToBeDisplayed(searchResultPage.CategoryTitle);
-            compare.GetCompareCheckboxForItem(productName).Click(); 
+            compare.GetCompareCheckboxForItem(productName);
         }
 
         [Then(@"User check that all displayed items has '(.*)' text in name")]
         public void ThenUserCheckThatAllDisplayedItemsHasTextInName(string productName)
         {
-            var searchResultPage = new SearchResultPage();
+            var searchResultPage = _driver.GetPage<SearchResultPage>();
             var actions = new Actions(_driver);
-            var productsList = new List<IWebElement>();
+            var productList = new List<string>();
 
-            do
+            while (searchResultPage.NextPageArrow.Displayed)
             {
-                productsList.AddRange(searchResultPage.GetListOfTheFoundProduct());
-                _driver.WaitForElementToBeDisplayed(searchResultPage.CategoryTitle);
+                _driver.WaitForElementToBeDisplayed(searchResultPage.SearchResultTitle);
                 try
                 {
+                    productList.AddRange(searchResultPage.GetListOfTheFoundProduct());
                     actions.MoveToElement(searchResultPage.NextPageArrow).Perform();
                     searchResultPage.NextPageArrow.Click();
+                    var a = searchResultPage.NextPageArrow.Displayed;
                 }
                 catch
                 {
                     break;
                 }
             }
-            while (searchResultPage.NextPageArrow.Displayed);
 
-            foreach (var product in productsList)
+            foreach (var product in productList)
             {
-                Assert.IsTrue(product.Text.Contains(productName), $"'{product}' product not contains '{productName}' in name");
+                Assert.IsTrue(product.Contains(productName), $"'{product}' product not contains '{productName}' in name");
             }
         }
+
         [Then(@"User sees '(.*)' option for sorting selected previously")]
-        public void ThenUserSeesOptionForSortingSelectedPreviously(string optionNmae)
+        public void ThenUserSeesOptionForSortingSelectedPreviously(string optionName)
         {
-            var searchResultPage = new SearchResultPage();
-            Assert.IsTrue(searchResultPage.GetSortedByOption(optionNmae).Selected, "Selected another option");
+            var searchResultPage = _driver.GetPage<SearchResultPage>();
+            Assert.IsTrue(searchResultPage.GetSortedByOption(optionName).Selected, "Selected another option");
         }
     }
 }

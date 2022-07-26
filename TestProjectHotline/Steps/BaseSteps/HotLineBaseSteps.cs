@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SeleniumExtras.PageObjects;
 using TechTalk.SpecFlow;
 using TestProjectHotline.Extensions;
 using TestProjectHotline.Components;
@@ -20,8 +19,8 @@ namespace TestProjectHotline.Steps.BaseSteps
         [When(@"User clicks '(.*)' button in modal window")]
         public void WhenUserClicksButtonInModalWindow(string buttonName)
         {
-            var itemPage = new ItemPage();
-            var button = new Button();
+            var itemPage = _driver.GetPage<ItemPage>();
+            var button = _driver.GetComponent<Button>();
             _driver.WaitForElementToBeDisplayed(itemPage.ModalWindowHeader);
             button.GetButtonByText(buttonName).Click();
         }
@@ -29,8 +28,8 @@ namespace TestProjectHotline.Steps.BaseSteps
         [When(@"User clicks '(.*)' product from 'search result' page")]
         public void WhenUserClicksProductFromSearchResultPage(string productName)
         {
-            var searchResultPage = new SearchResultPage();
-            _driver.WaitForElementToBeDisplayed(searchResultPage.CategoryTitle);
+            var searchResultPage =_driver.GetPage<SearchResultPage>();
+            _driver.WaitForElementToBeDisplayed(searchResultPage.SearchResultTitle);
             searchResultPage.GоToProductFromSearchResultPage(productName).Click();
         }
 
@@ -38,46 +37,49 @@ namespace TestProjectHotline.Steps.BaseSteps
         public void WhenUserSetTextToSearchBar(string itemName)
         {
             var mainPage = _driver.GetPage<MainPage>();
+            var searchResultPage = _driver.GetPage<SearchResultPage>();
             mainPage.SearchBar.SendKeys(itemName);
             mainPage.SubmitSearchButton.Click();
+            _driver.WaitForElementToBeDisplayed(searchResultPage.SearchResultTitle);
         }
 
         [When(@"User select '(.*)' option from '(.*)' dropdown")]
         public void WhenUserSelectOptionFromDropdown(string sortByName, string dropdownIdentifier)
         {
-            var dropdown = new Dropdown();
-            var searchResultPage = new SearchResultPage();
-            _driver.WaitForElementToBeDisplayed(searchResultPage.CategoryTitle);
+            var dropdown = _driver.GetComponent<Dropdown>();
+            var searchResultPage = _driver.GetPage<SearchResultPage>();
+            //_driver.WaitForElementToBeDisplayed(searchResultPage.CategoryTitle);
             dropdown.GetOptionsFromDropdown(dropdownIdentifier, sortByName).Click();
         }
 
         [When(@"User clicks button by identifier '(.*)'")]
         public void WhenUserClicksComparisonButtonByIdentifier(string identifier)
         {
-            var button = new Button();
+            var button = _driver.GetComponent<Button>();
             button.GetButtonByClass(identifier).Click();
         }
 
         [When(@"User select '(.*)' option form dropdown by id '(.*)'")]
         public void WhenUserSelectOptionFromDropdownByID(string listName, string dropdownId)
         {
-            var dropdown = new Dropdown();
+            var dropdown = _driver.GetComponent<Dropdown>();
             dropdown.GetOptionsFromDropdownByDropdownIdFromMainPage(dropdownId, listName).Click();
         }
 
         [When(@"User go to main page through the logo")]
         public void WhenUserGoToMainPageThroughTheLogo()
         {
-            var mainPage = new MainPage();
+            var mainPage = _driver.GetPage<MainPage>();
             mainPage.HotlineLogo.Click();
         }
 
         [When(@"User go to 'personal list' from modal window")]
         public void WhenUserGoToPersonalListFromModalWindow()
         {
-            var itemPage = new ItemPage();
-            _driver.WaitForElementToBeDisplayed(itemPage.ModalWindowHeader);
+            var itemPage = _driver.GetPage<ItemPage>();
+            //_driver.WaitForElementToBeDisplayed(itemPage.ModalWindowHeader);
             itemPage.GoToListFromModalWindow.Click();
+            _driver.SwitchToNewWindow();
         }
 
         [When(@"User clicks button ")]
@@ -85,8 +87,9 @@ namespace TestProjectHotline.Steps.BaseSteps
         [When(@"User select '(.*)' option from dropdown by dropdown class '(.*)'")]
         public void WhenUserSelectOptionFromDropdownByDropdownClass(string optionName, string className)
         {
-            var dropdown = new Dropdown();
-            dropdown.GetOptionsFromDropdownByDropdownClass(className, optionName);
+            var dropdown = _driver.GetComponent<Dropdown>() ;
+            dropdown.GetOptionsFromDropdownByDropdownClass(className, optionName).Click();
+            _driver.SwitchToNewWindow();
         }
     }
 }

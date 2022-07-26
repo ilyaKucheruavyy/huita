@@ -1,13 +1,21 @@
 ﻿using OpenQA.Selenium;
+using TestProjectHotline.Extensions;
 
 namespace TestProjectHotline.Components
 {
     public class FiltersMenu: BaseComponent
     {
-        public IWebElement GetFilterCheckbox(string filterName)
+        public void GetFilterCheckbox(string filterName)
         {
-            return Driver.FindElement(By.XPath
-                ($".//div[@class = 'sidebar-filter__body']//div[contains(text(),'{filterName}')]//preceding-sibling::input"));
+            try
+            {
+                Driver.ScrollToElementWithJS($".//span[contains(text(),'{filterName}')]//..//..//../input");
+            }
+            catch
+            {
+                Driver.UserClicks
+                    ($".//span[contains(text(),'{filterName}')]//..//..//../input");
+            }
         }
     }
 }

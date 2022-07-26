@@ -22,7 +22,7 @@ namespace TestProjectHotline.Steps.BaseSteps
             switch(environment)
             {
                 case "HotLineEnv":
-                    _driver.Navigate().GoToUrl("https://hotline.ua/");
+                    _driver.Navigate().GoToUrl(EnvironmentProvider.HotLineEnv);
                     break;
                 default:
                     throw new Exception($"{environment} is not exist");

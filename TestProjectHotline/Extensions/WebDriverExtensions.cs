@@ -3,6 +3,7 @@ using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using System;
 using System.Collections.Generic;
+using TestProjectHotline.Components;
 using TestProjectHotline.Pages;
 
 namespace TestProjectHotline.Extensions
@@ -21,6 +22,12 @@ namespace TestProjectHotline.Extensions
             wait.Until(ElementIsInDisplayedCondition(element, true));
             // тут, антил, будет ждать 15 секунд, бо так сетнуто выше в вебДрайверВейт, на предмет того, что елемент все таки откинет тру, ну то есть будет виден
             // если закинуть фолс, метод будет ждать, что в течении 15 секунд, елемент пропадёт
+        }
+
+        public static void WaitUntilTextToBePresent(this IWebDriver driver, IWebElement element, string text)
+        {
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15)); 
+            wait.Until(ExpectedConditions.ElementToBeClickable(element));
         }
 
         public static void WaitForElementToBeDisplayed(this IWebDriver driver, By by)
@@ -65,7 +72,7 @@ namespace TestProjectHotline.Extensions
         public static void ScrollToElementWithJS(this IWebDriver driver, string selector)
         {
             IJavaScriptExecutor js = (IJavaScriptExecutor)(driver);
-            js.ExecuteScript($"var selectCounry = document.querySelector('{selector}'); selectCounry.scrollIntoView(false);");
+            js.ExecuteScript($"var selectCounry = document.querySelector(\"{selector}\"); selectCounry.scrollIntoView(false);");
         }
 
         public static void SwitchFrame(this IWebDriver driver, IWebElement element)
@@ -74,13 +81,21 @@ namespace TestProjectHotline.Extensions
             driver.SwitchTo().Frame(frame);
         }
 
-        public static void UserClicks(this IWebDriver driver, string checkboxIdentifier)
+        public static void UserClicks(this IWebDriver driver, string Identifier)
         {
             IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-            js.ExecuteScript($"var a = document.evaluate('{checkboxIdentifier}', document).iterateNext(); a.click();");
+            js.ExecuteScript($"var a = document.evaluate(\"{Identifier}\", document).iterateNext(); a.click();");
+
         }
 
         public static T GetPage<T>(this WebDriver driver) where T : BasePage, new()
+        {
+            var page = new T { Driver = driver };
+            page.InitElement();
+            return page;
+        }
+
+        public static T GetComponent<T>(this WebDriver driver) where T : BaseComponent, new()
         {
             var page = new T { Driver = driver };
             page.InitElement();

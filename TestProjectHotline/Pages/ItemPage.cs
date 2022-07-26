@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace TestProjectHotline.Pages
 {
-    public class ItemPage
+    public class ItemPage : BasePage
     {
         [FindsBy(How = How.XPath, Using = ".//div[@class = 'title']")]
         public IWebElement ItemPageHeader { get; set; }
@@ -22,7 +22,7 @@ namespace TestProjectHotline.Pages
         public IWebElement ComparePriceButton { get; set; }
 
         [FindsBy(How = How.XPath, Using = ".//div[@class = 'price content']//div[@class = 'shop__about col-xs-12 col-xl-7 flex-column top-xs']//a[@target]")]
-        public List<IWebElement> ListOfStore { get; set; }
+        public IList<IWebElement> ListOfStore { get; set; }
 
         [FindsBy(How = How.XPath, Using = ".//div[@class = 'modal__title']")]
         public IWebElement ModalWindowHeader { get; set; }

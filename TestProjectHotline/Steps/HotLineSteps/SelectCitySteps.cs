@@ -2,6 +2,8 @@
 using TechTalk.SpecFlow;
 using TestProjectHotline.Extensions;
 using NUnit.Framework;
+using OpenQA.Selenium.DevTools.V103.IndexedDB;
+using OpenQA.Selenium.Interactions;
 using TestProjectHotline.Pages;
 
 namespace TestProjectHotline.Steps.HotLineSteps
@@ -19,39 +21,49 @@ namespace TestProjectHotline.Steps.HotLineSteps
         [When(@"User clicks 'select city' button")]
         public void WhenUserClicksSelectCityButton()
         {
-            var mainPage = new MainPage();
-            mainPage.SelectCityButton.Click();
+            var selectCityPage = _driver.GetPage<SelectCityPage>();
+            selectCityPage.SelectCityButton.Click();
         }
 
         [When(@"User set '(.*)' city name to search bar")]
         public void WHenUserSetCityNameToSearchBar(string cityName)
         {
-            var mainPage= new MainPage();
-            _driver.WaitForElementToBeDisplayed(mainPage.SelectCityHeader);
-            mainPage.SearchBarForSelectedCity.SendKeys(cityName);
+            var selectCityPage = _driver.GetPage<SelectCityPage>();
+            _driver.WaitForElementToBeDisplayed(selectCityPage.SelectCityHeader);
+            selectCityPage.SearchBarForCity.SendKeys(cityName);
         }
 
         [When(@"User select '(.*)' city")]
         public void WhenUserSelectCity(string cityName)
         {
-            var mainPage = new MainPage();
-            _driver.WaitForElementToBeDisplayed(mainPage.SelectCityHeader);
-            mainPage.GetOptionFromSelectCityWindow(cityName).Click();
+            var actions = new Actions(_driver);
+            var selectCityPage = _driver.GetPage<SelectCityPage>();
+            actions.MoveToElement(selectCityPage.GetOptionFromSelectCityAutocomplete(cityName)).Click().Perform();
         }
+
+        //[When(@"User select '(.*)' city by '(.*)' city name from autocomplete")]
+        //public void WhenUserSelectCategoryFromAutocomplete(string city, string cityName)
+        //{
+        //    var selectCityPage = _driver.GetPage<SelectCityPage>();
+        //    _driver.WaitForElementToBeDisplayed(selectCityPage.SelectCityHeader);
+        //    selectCityPage.SearchBarForCity.SendKeys(cityName);
+        //    _driver.WaitForElementToBeDisplayed(selectCityPage.GetListOfCity);
+        //    selectCityPage.GetOptionFromSelectCityAutocomplete(city).Click();
+        //}
 
         [Then(@"User sees 'select city' header")]
         public void ThenUserSeesSelectCityHeader()
         {
-            var mainPage = new MainPage();
-            Assert.IsTrue(mainPage.SelectCityHeader.Displayed, $"Element '{mainPage.SelectCityHeader}' is not displayed");
+            var selectCityPage = _driver.GetPage<SelectCityPage>();
+            Assert.IsTrue(selectCityPage.SelectCityHeader.Displayed, $"Element '{selectCityPage.SelectCityHeader}' is not displayed");
         }
 
         [Then(@"User sees '(.*)' city in geo tag")]
         public void ThenUserSeesCityInGeoTag(string cityName)
         {
-            var mainPage = new MainPage();
-            Assert.AreEqual(mainPage.SelectCityButton.Text, cityName, 
-                $"Actual result '{mainPage.SelectCityButton.Text}' not equals to expected result '{cityName}'");
+            var selectCityPage = _driver.GetPage<SelectCityPage>();
+            Assert.AreEqual(selectCityPage.SelectCityButton.Text, cityName, 
+                $"Actual result '{selectCityPage.SelectCityButton.Text}' not equals to expected result '{cityName}'");
         }
     }
 }
