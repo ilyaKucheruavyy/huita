@@ -2,7 +2,6 @@
 using TechTalk.SpecFlow;
 using TestProjectHotline.Extensions;
 using NUnit.Framework;
-using OpenQA.Selenium.DevTools.V103.IndexedDB;
 using OpenQA.Selenium.Interactions;
 using TestProjectHotline.Pages;
 
@@ -40,16 +39,6 @@ namespace TestProjectHotline.Steps.HotLineSteps
             var selectCityPage = _driver.GetPage<SelectCityPage>();
             actions.MoveToElement(selectCityPage.GetOptionFromSelectCityAutocomplete(cityName)).Click().Perform();
         }
-
-        //[When(@"User select '(.*)' city by '(.*)' city name from autocomplete")]
-        //public void WhenUserSelectCategoryFromAutocomplete(string city, string cityName)
-        //{
-        //    var selectCityPage = _driver.GetPage<SelectCityPage>();
-        //    _driver.WaitForElementToBeDisplayed(selectCityPage.SelectCityHeader);
-        //    selectCityPage.SearchBarForCity.SendKeys(cityName);
-        //    _driver.WaitForElementToBeDisplayed(selectCityPage.GetListOfCity);
-        //    selectCityPage.GetOptionFromSelectCityAutocomplete(city).Click();
-        //}
 
         [Then(@"User sees 'select city' header")]
         public void ThenUserSeesSelectCityHeader()

@@ -3,7 +3,6 @@ using TechTalk.SpecFlow;
 using TestProjectHotline.Extensions;
 using OpenQA.Selenium.Interactions;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using NUnit.Framework;
 using TestProjectHotline.Components;
 using TestProjectHotline.Pages;
@@ -86,7 +85,7 @@ namespace TestProjectHotline.Steps.HotLineSteps
                     productList.AddRange(searchResultPage.GetListOfTheFoundProduct());
                     actions.MoveToElement(searchResultPage.NextPageArrow).Perform();
                     searchResultPage.NextPageArrow.Click();
-                    var a = searchResultPage.NextPageArrow.Displayed;
+                    var nextPageArrowDisplayed = searchResultPage.NextPageArrow.Displayed;
                 }
                 catch
                 {
@@ -105,6 +104,23 @@ namespace TestProjectHotline.Steps.HotLineSteps
         {
             var searchResultPage = _driver.GetPage<SearchResultPage>();
             Assert.IsTrue(searchResultPage.GetSortedByOption(optionName).Selected, "Selected another option");
+        }
+
+        [When(@"User go to 'selected filters'")]
+        public void WhenUserGoToSelectedFilters()
+        {
+            var searchResultPage = _driver.GetPage<SearchResultPage>();
+            searchResultPage.SelectedFilters.Click();
+        }
+
+        [Then(@"User check that selected '(.*)' filter is displayed")]
+        public void ThenUserCheckThatSelectedFilterIsDisplayed(string filterName)
+        {
+            var searchResultPage = _driver.GetPage<SearchResultPage>();
+            _driver.WaitForElementToBeDisplayed(searchResultPage.SelectedFiltersTitle);
+            var selectedFilter = searchResultPage.GetSelectedFilters(filterName);
+
+            Assert.IsTrue(selectedFilter.Displayed, "Filter not displayed");
         }
     }
 }

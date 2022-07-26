@@ -1,10 +1,8 @@
-﻿using System.Threading;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using TestProjectHotline.Extensions;
 using NUnit.Framework;
 using OpenQA.Selenium.Interactions;
-using TestProjectHotline.Components;
 using TestProjectHotline.Pages;
 
 namespace TestProjectHotline.Steps.HotLineSteps
@@ -22,12 +20,9 @@ namespace TestProjectHotline.Steps.HotLineSteps
         [When(@"User go to 'all categories'")]
         public void WhenUserGoToAllCategories()
         {
-            var actions = new Actions(_driver);
             var mainPage = _driver.GetPage<MainPage>();
             _driver.WaitForElementToBeDisplayed(mainPage.AllCategories);
             mainPage.MoveToAllCategories();
-            
-
             mainPage.ClickOnAllCategory();
         }
 

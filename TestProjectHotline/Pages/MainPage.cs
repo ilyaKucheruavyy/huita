@@ -21,11 +21,6 @@ namespace TestProjectHotline.Pages
         [FindsBy(How = How.XPath, Using = ".//input[@id= 'searchbox']")]
         public IWebElement SearchBar { get; set; }
 
-        public IWebElement GetOptionFromSelectCityWindow(string cityName)
-        {
-            return Driver.FindElement(By.XPath($".//div[@class = 'ui-menu-wrapper']//li[contains(text(),'{cityName}')]"));
-        }
-
         public void MoveToAllCategories()
         {
             Driver.ScrollToElementWithJS(".menu-main-item.catalog");

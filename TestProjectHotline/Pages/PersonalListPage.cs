@@ -1,14 +1,10 @@
 ﻿using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
-using System.Collections.Generic;
 
 namespace TestProjectHotline.Pages
 {
     public class PersonalListPage : BasePage
     {
-        //[FindsBy(How = How.XPath, Using = ".//div[contains(@class,'viewbox')]//p/a")]
-        //public IList<IWebElement> ProductAddedToPersonalList { get; set; }
-
         [FindsBy(How = How.XPath, Using = ".//div[@class = 'cell-9 cell-md']/h1")]
         public IWebElement PersonalListHeader { get; set; }
 

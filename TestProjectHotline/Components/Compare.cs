@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium;
-using TestProjectHotline.Extensions;
+﻿using TestProjectHotline.Extensions;
 
 namespace TestProjectHotline.Components
 {

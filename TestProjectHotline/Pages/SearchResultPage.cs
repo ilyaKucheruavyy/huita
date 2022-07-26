@@ -29,6 +29,9 @@ namespace TestProjectHotline.Pages
         [FindsBy(How = How.XPath, Using = ".//div[contains(@class,'search-sidebar-filter search-sidebar__item')]")]
         public IWebElement ManufacturerSection { get; set; }
 
+        [FindsBy(How = How.XPath, Using = ".//div[contains(@class,'selected__title')]")]
+        public IWebElement SelectedFiltersTitle { get; set; }
+
         public void GetManufacturerFromSearchResultPage(string manufacturerName)
         {
             Driver.UserClicks(
@@ -37,15 +40,15 @@ namespace TestProjectHotline.Pages
 
         public IList<string> GetListOfTheFoundProduct()
         {
-            List<string> a = new List<string>();
+            List<string> ListOfTheFoundProduct = new List<string>();
 
             var listProduct =  Driver.FindElements(By.XPath(".//a[contains(@class,'list-item__title')]")).ToList();
             foreach (var product in listProduct )
             {
-                a.Add(product.Text);
+                ListOfTheFoundProduct.Add(product.Text);
             }
 
-            return a;
+            return ListOfTheFoundProduct;
         }
 
         public IWebElement GоToProductFromSearchResultPage(string productName)
@@ -57,6 +60,12 @@ namespace TestProjectHotline.Pages
         public IWebElement GetSortedByOption(string optionName)
         {
             return Driver.FindElement(By.XPath($".//option[contains(text(),'{optionName}')]"));
+        }
+
+        public IWebElement GetSelectedFilters(string filterName)
+        {
+            return Driver.FindElement(
+                By.XPath($".//div[contains(@class,'selected__filter')]//span[contains(text(),'{filterName}')]"));
         }
     }
 }

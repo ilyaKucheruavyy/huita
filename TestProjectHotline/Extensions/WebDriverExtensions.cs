@@ -27,7 +27,7 @@ namespace TestProjectHotline.Extensions
         public static void WaitUntilTextToBePresent(this IWebDriver driver, IWebElement element, string text)
         {
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15)); 
-            wait.Until(ExpectedConditions.ElementToBeClickable(element));
+            wait.Until(ExpectedConditions.TextToBePresentInElement(element, text));
         }
 
         public static void WaitForElementToBeDisplayed(this IWebDriver driver, By by)

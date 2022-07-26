@@ -60,7 +60,7 @@ namespace TestProjectHotline.Steps.BaseSteps
         }
 
         [When(@"User select '(.*)' option form dropdown by id '(.*)'")]
-        public void WhenUserSelectOptionFromDropdownByID(string listName, string dropdownId)
+        public void WhenUserSelectOptionFromDropdownById(string listName, string dropdownId)
         {
             var dropdown = _driver.GetComponent<Dropdown>();
             dropdown.GetOptionsFromDropdownByDropdownIdFromMainPage(dropdownId, listName).Click();
@@ -77,12 +77,9 @@ namespace TestProjectHotline.Steps.BaseSteps
         public void WhenUserGoToPersonalListFromModalWindow()
         {
             var itemPage = _driver.GetPage<ItemPage>();
-            //_driver.WaitForElementToBeDisplayed(itemPage.ModalWindowHeader);
             itemPage.GoToListFromModalWindow.Click();
             _driver.SwitchToNewWindow();
         }
-
-        [When(@"User clicks button ")]
 
         [When(@"User select '(.*)' option from dropdown by dropdown class '(.*)'")]
         public void WhenUserSelectOptionFromDropdownByDropdownClass(string optionName, string className)
