@@ -4,7 +4,7 @@ namespace TestProjectHotline.Components
 {
     public class FiltersMenu: BaseComponent
     {
-        public void GetFilterCheckbox(string filterName)
+        public void SelectCheckboxForFilter(string filterName)
         {
             try
             {

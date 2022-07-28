@@ -9,12 +9,12 @@ namespace TestProjectHotline.Components
             return Driver.FindElement(By.XPath($".//div[contains(@class,'{dropdownIdentifier}')]//option[contains(text(),'{optionName}')]"));
         }
 
-        public IWebElement GetOptionsFromDropdownByDropdownIdFromMainPage(string dropdownId, string parameterName)
+        public IWebElement GetOptionsFromDropdownByIdFromMainPage(string dropdownId, string parameterName)
         {
             return Driver.FindElement(By.XPath($".//div[@data-dropdown-id = '{dropdownId}']//li[contains(text(),'{parameterName}')]"));
         }
 
-        public IWebElement GetOptionsFromDropdownByDropdownClass(string dropdownId, string optionName)
+        public IWebElement GetOptionsFromDropdownByClass(string dropdownId, string optionName)
         {
             return Driver.FindElement(
                 By.XPath($".//div[contains(@class, 'item-{dropdownId}')]//a[contains(text(),'{optionName}')]"));

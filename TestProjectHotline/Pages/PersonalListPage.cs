@@ -8,14 +8,14 @@ namespace TestProjectHotline.Pages
         [FindsBy(How = How.XPath, Using = ".//div[@class = 'cell-9 cell-md']/h1")]
         public IWebElement PersonalListHeader { get; set; }
 
-        public IWebElement DeleteItemAddedToPersonalList(string productName)
+        public IWebElement DeleteItemThatWasAddedToPersonalList(string productName)
         {
             return Driver.FindElement(By.XPath($".//p[@class = 'h4']/a[contains(text(),'{productName}')]/../../../../i"));
         }
 
-        public IWebElement ProductAddedToPersonalLIst(string pn)
+        public IWebElement AddProductToPersonalLIst(string productName)
         {
-            return Driver.FindElement(By.XPath($".//div[contains(@class,'viewbox')]//p/a[contains(text(),'{pn}')]"));
+            return Driver.FindElement(By.XPath($".//div[contains(@class,'viewbox')]//p/a[contains(text(),'{productName}')]"));
         }
     }
 }

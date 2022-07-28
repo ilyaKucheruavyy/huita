@@ -30,7 +30,7 @@ namespace TestProjectHotline.Steps.BaseSteps
         {
             var searchResultPage =_driver.GetPage<SearchResultPage>();
             _driver.WaitForElementToBeDisplayed(searchResultPage.SearchResultTitle);
-            searchResultPage.GоToProductFromSearchResultPage(productName).Click();
+            searchResultPage.GetProductFromSearchResultPage(productName).Click();
         }
 
         [When(@"User set '(.*)' text to 'search bar'")]
@@ -47,13 +47,11 @@ namespace TestProjectHotline.Steps.BaseSteps
         public void WhenUserSelectOptionFromDropdown(string sortByName, string dropdownIdentifier)
         {
             var dropdown = _driver.GetComponent<Dropdown>();
-            var searchResultPage = _driver.GetPage<SearchResultPage>();
-            //_driver.WaitForElementToBeDisplayed(searchResultPage.CategoryTitle);
             dropdown.GetOptionsFromDropdown(dropdownIdentifier, sortByName).Click();
         }
 
         [When(@"User clicks button by identifier '(.*)'")]
-        public void WhenUserClicksComparisonButtonByIdentifier(string identifier)
+        public void WhenUserClicksButtonByIdentifier(string identifier)
         {
             var button = _driver.GetComponent<Button>();
             button.GetButtonByClass(identifier).Click();
@@ -63,7 +61,7 @@ namespace TestProjectHotline.Steps.BaseSteps
         public void WhenUserSelectOptionFromDropdownById(string listName, string dropdownId)
         {
             var dropdown = _driver.GetComponent<Dropdown>();
-            dropdown.GetOptionsFromDropdownByDropdownIdFromMainPage(dropdownId, listName).Click();
+            dropdown.GetOptionsFromDropdownByIdFromMainPage(dropdownId, listName).Click();
         }
 
         [When(@"User go to main page through the logo")]
@@ -81,11 +79,11 @@ namespace TestProjectHotline.Steps.BaseSteps
             _driver.SwitchToNewWindow();
         }
 
-        [When(@"User select '(.*)' option from dropdown by dropdown class '(.*)'")]
-        public void WhenUserSelectOptionFromDropdownByDropdownClass(string optionName, string className)
+        [When(@"User select '(.*)' option from dropdown by class '(.*)'")]
+        public void WhenUserSelectOptionFromDropdownByClass(string optionName, string className)
         {
             var dropdown = _driver.GetComponent<Dropdown>() ;
-            dropdown.GetOptionsFromDropdownByDropdownClass(className, optionName).Click();
+            dropdown.GetOptionsFromDropdownByClass(className, optionName).Click();
             _driver.SwitchToNewWindow();
         }
     }

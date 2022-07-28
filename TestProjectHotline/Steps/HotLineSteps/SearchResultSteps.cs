@@ -30,7 +30,7 @@ namespace TestProjectHotline.Steps.HotLineSteps
             }
             catch
             {
-                searchResultPage.GetManufacturerFromSearchResultPage(manufacturerName);
+                searchResultPage.SelectManufacturerFromSearchResultPage(manufacturerName);
             }
         }
 
@@ -58,7 +58,7 @@ namespace TestProjectHotline.Steps.HotLineSteps
             var searchResultPage = _driver.GetPage<SearchResultPage>();
             var filtersMenu = _driver.GetComponent<FiltersMenu>();
             _driver.WaitForElementToBeDisplayed(searchResultPage.CategoryTitle);
-            filtersMenu.GetFilterCheckbox(filterName);
+            filtersMenu.SelectCheckboxForFilter(filterName);
         }
 
         [When(@"User add '(.*)' product to 'compare'")]
@@ -103,7 +103,7 @@ namespace TestProjectHotline.Steps.HotLineSteps
         public void ThenUserSeesOptionForSortingSelectedPreviously(string optionName)
         {
             var searchResultPage = _driver.GetPage<SearchResultPage>();
-            Assert.IsTrue(searchResultPage.GetSortedByOption(optionName).Selected, "Selected another option");
+            Assert.IsTrue(searchResultPage.SortedListOfTheProductByOption(optionName).Selected, "Selected another option");
         }
 
         [When(@"User go to 'selected filters'")]

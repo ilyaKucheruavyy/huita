@@ -34,7 +34,7 @@ namespace TestProjectHotline.Steps.EtsySteps
             var logInPage = _driver.GetPage<LoginPage>();
             var mainPage = _driver.GetPage<MainPage>();
             _driver.WaitForElementToBeDisplayed(mainPage.HotlineLogo);
-            Assert.AreEqual(logInPage.NickName.Text, userNickname, 
+            Assert.AreEqual(userNickname, logInPage.NickName.Text, 
                 $"Actual result '{logInPage.NickName.Text}' not equals to expected result '{userNickname}'");
         }
     }

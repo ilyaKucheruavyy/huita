@@ -32,7 +32,7 @@ namespace TestProjectHotline.Pages
         [FindsBy(How = How.XPath, Using = ".//div[contains(@class,'selected__title')]")]
         public IWebElement SelectedFiltersTitle { get; set; }
 
-        public void GetManufacturerFromSearchResultPage(string manufacturerName)
+        public void SelectManufacturerFromSearchResultPage(string manufacturerName)
         {
             Driver.UserClicks(
                 $".//div[contains(text(),'{manufacturerName}')]/preceding-sibling::input");
@@ -51,13 +51,13 @@ namespace TestProjectHotline.Pages
             return ListOfTheFoundProduct;
         }
 
-        public IWebElement GоToProductFromSearchResultPage(string productName)
+        public IWebElement GetProductFromSearchResultPage(string productName)
         {
             return Driver.FindElement(By.XPath
                 ($".//div[contains(@class, 'list-item__info')]//a[contains(text(),'{productName}')]"));
         }
 
-        public IWebElement GetSortedByOption(string optionName)
+        public IWebElement SortedListOfTheProductByOption(string optionName)
         {
             return Driver.FindElement(By.XPath($".//option[contains(text(),'{optionName}')]"));
         }
