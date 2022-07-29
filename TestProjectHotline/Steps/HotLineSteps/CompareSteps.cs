@@ -22,7 +22,7 @@ namespace TestProjectHotline.Steps.HotLineSteps
         {
             var comparePage = _driver.GetPage<ComparePage>();
             _driver.WaitForElementToBeDisplayed(comparePage.ComparsionHeader);
-            comparePage.DeleteItemAddedToComparison(productName).Click();
+            comparePage.GetItemAddedToComparison(productName).Click();
         }
 
         [Then(@"User check that '(.*)' product that added to comparison is displayed")]
@@ -30,10 +30,10 @@ namespace TestProjectHotline.Steps.HotLineSteps
         {
             var comparePage = _driver.GetPage<ComparePage>();
             _driver.WaitForElementToBeDisplayed(comparePage.ComparsionHeader);
-            var someProduct = comparePage.ComparedItems.FirstOrDefault(x => 
+            var product = comparePage.ComparedItems.FirstOrDefault(x => 
                 x.Text.Equals(productName));
 
-            Assert.IsTrue(someProduct.Displayed, $"'{someProduct}' product is not displayed on comparison page");
+            Assert.IsTrue(product.Displayed, $"'{product}' product is not displayed on comparison page");
         }
 
         [Then(@"User sees list of the market with prices for selected product")]

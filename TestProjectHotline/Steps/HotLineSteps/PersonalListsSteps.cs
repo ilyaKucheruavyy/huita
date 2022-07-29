@@ -21,7 +21,7 @@ namespace TestProjectHotline.Steps.HotLineSteps
         {
             var personalListPage = _driver.GetPage<PersonalListPage>();
             _driver.WaitForElementToBeDisplayed(personalListPage.PersonalListHeader);
-            personalListPage.DeleteItemThatWasAddedToPersonalList(productName).Click();
+            personalListPage.GetIconForDeleteItemFromPersonalList(productName).Click();
         }
 
         [Then(@"User check that '(.*)' product that added to personal list is displayed")]
@@ -30,7 +30,7 @@ namespace TestProjectHotline.Steps.HotLineSteps
             var personalListPage = _driver.GetPage<PersonalListPage>();
             _driver.WaitForElementToBeDisplayed(personalListPage.PersonalListHeader);
 
-            Assert.IsTrue(personalListPage.AddProductToPersonalLIst(productName).Displayed, "Product is not displayed on personal list page");
+            Assert.IsTrue(personalListPage.GetProductAddedToPersonalList(productName).Displayed,$"'{productName}' product is not displayed on personal list page");
         }
     }
 }

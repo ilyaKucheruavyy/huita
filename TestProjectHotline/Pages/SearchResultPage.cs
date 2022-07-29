@@ -34,11 +34,11 @@ namespace TestProjectHotline.Pages
 
         public void SelectManufacturerFromSearchResultPage(string manufacturerName)
         {
-            Driver.UserClicks(
+            Driver.UserClicksWhithJS(
                 $".//div[contains(text(),'{manufacturerName}')]/preceding-sibling::input");
         }
 
-        public IList<string> GetListOfTheFoundProduct()
+        public IList<string> GetListOfTheFoundProductNames()
         {
             List<string> ListOfTheFoundProduct = new List<string>();
 

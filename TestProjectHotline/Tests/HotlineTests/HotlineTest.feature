@@ -37,7 +37,7 @@ Scenario:  User_add_items_to_compare
 	And User add 'IQOS VEEV, Графитовый (DF001497.00)' product to 'compare'
 	When User clicks button by identifier '-compare'
 	When User waits '2' second
-	When User select 'Електронні цигарки' option from dropdown by class '-compare'
+	When User select 'Електронні цигарки' option from dropdown by '-compare' class
 	Then User check that 'IQOS VEEV, Синий (DF001496.00)' product that added to comparison is displayed
 	And User check that 'IQOS VEEV, Графитовый (DF001497.00)' product that added to comparison is displayed
 
@@ -59,13 +59,13 @@ Scenario: User_search_category
 	When User clicks 'Так, я старше 18 років' button in modal window
 	Then User sees category header
 
-Scenario: User_check_'viewed product'
+Scenario: User_check_viewed_product
 	When User set 'iqos' text to 'search bar'
 	When User clicks 'IQOS 3 DUO, черный (DK000495.00)' product from 'search result' page
 	When User waits '3' second
 	When User clicks button by identifier '-listing'
 	When User waits '3' second
-	When User select 'Переглянуті товари' option from dropdown by class '-listings'
+	When User select 'Переглянуті товари' option from dropdown by '-listings' class
 	Then User check that 'IQOS 3 DUO, черный (DK000495.00)' product that added to personal list is displayed
 
 Scenario: User_select_another_city

@@ -57,8 +57,8 @@ namespace TestProjectHotline.Steps.BaseSteps
             button.GetButtonByClass(identifier).Click();
         }
 
-        [When(@"User select '(.*)' option form dropdown by id '(.*)'")]
-        public void WhenUserSelectOptionFromDropdownById(string listName, string dropdownId)
+        [When(@"User select '(.*)' option form dropdown by '(.*)' id from 'main page'")]
+        public void WhenUserSelectOptionFromDropdownByIdFromMainPage(string listName, string dropdownId)
         {
             var dropdown = _driver.GetComponent<Dropdown>();
             dropdown.GetOptionsFromDropdownByIdFromMainPage(dropdownId, listName).Click();
@@ -79,7 +79,7 @@ namespace TestProjectHotline.Steps.BaseSteps
             _driver.SwitchToNewWindow();
         }
 
-        [When(@"User select '(.*)' option from dropdown by class '(.*)'")]
+        [When(@"User select '(.*)' option from dropdown by '(.*)' class")]
         public void WhenUserSelectOptionFromDropdownByClass(string optionName, string className)
         {
             var dropdown = _driver.GetComponent<Dropdown>() ;

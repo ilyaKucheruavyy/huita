@@ -24,14 +24,8 @@ namespace TestProjectHotline.Steps.HotLineSteps
         {
             var searchResultPage = _driver.GetPage<SearchResultPage>();
             _driver.WaitForElementToBeDisplayed(searchResultPage.SearchResultTitle);
-            try
-            {
-                searchResultPage.ShowAllManufacturer.Click();
-            }
-            catch
-            {
-                searchResultPage.SelectManufacturerFromSearchResultPage(manufacturerName);
-            }
+            searchResultPage.ShowAllManufacturer.Click();
+            searchResultPage.SelectManufacturerFromSearchResultPage(manufacturerName);
         }
 
         [When(@"User select '(.*)' category")]
@@ -58,7 +52,7 @@ namespace TestProjectHotline.Steps.HotLineSteps
             var searchResultPage = _driver.GetPage<SearchResultPage>();
             var filtersMenu = _driver.GetComponent<FiltersMenu>();
             _driver.WaitForElementToBeDisplayed(searchResultPage.CategoryTitle);
-            filtersMenu.SelectCheckboxForFilter(filterName);
+            filtersMenu.ClickOnCheckboxForFilter(filterName);
         }
 
         [When(@"User add '(.*)' product to 'compare'")]
@@ -67,7 +61,7 @@ namespace TestProjectHotline.Steps.HotLineSteps
             var searchResultPage = _driver.GetPage<SearchResultPage>();
             var compare = _driver.GetComponent<Compare>();
             _driver.WaitForElementToBeDisplayed(searchResultPage.CategoryTitle);
-            compare.GetCompareCheckboxForItem(productName);
+            compare.ClicksOnCheckboxForItemCompare(productName);
         }
 
         [Then(@"User check that all displayed items has '(.*)' text in name")]
@@ -82,7 +76,7 @@ namespace TestProjectHotline.Steps.HotLineSteps
                 _driver.WaitForElementToBeDisplayed(searchResultPage.SearchResultTitle);
                 try
                 {
-                    productList.AddRange(searchResultPage.GetListOfTheFoundProduct());
+                    productList.AddRange(searchResultPage.GetListOfTheFoundProductNames());
                     actions.MoveToElement(searchResultPage.NextPageArrow).Perform();
                     searchResultPage.NextPageArrow.Click();
                     var nextPageArrowDisplayed = searchResultPage.NextPageArrow.Displayed;
@@ -120,7 +114,7 @@ namespace TestProjectHotline.Steps.HotLineSteps
             _driver.WaitForElementToBeDisplayed(searchResultPage.SelectedFiltersTitle);
             var selectedFilter = searchResultPage.GetSelectedFilters(filterName);
 
-            Assert.IsTrue(selectedFilter.Displayed, "Filter not displayed");
+            Assert.IsTrue(selectedFilter.Displayed, $"'{filterName}' filter not displayed");
         }
     }
 }

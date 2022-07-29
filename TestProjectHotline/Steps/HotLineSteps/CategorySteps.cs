@@ -2,7 +2,6 @@
 using TechTalk.SpecFlow;
 using TestProjectHotline.Extensions;
 using NUnit.Framework;
-using OpenQA.Selenium.Interactions;
 using TestProjectHotline.Pages;
 
 namespace TestProjectHotline.Steps.HotLineSteps

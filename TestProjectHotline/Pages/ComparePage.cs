@@ -12,7 +12,7 @@ namespace TestProjectHotline.Pages
         [FindsBy(How = How.XPath, Using = ".//div[@class = 'cell-12']/h1")]
         public IWebElement ComparsionHeader { get; set; }
 
-        public IWebElement DeleteItemAddedToComparison(string productName)
+        public IWebElement GetItemAddedToComparison(string productName)
         {
             return Driver.FindElement(By.XPath($".//a[@class = 'title-overflow' and contains(text(),'{productName}')]/preceding-sibling::div/i"));
         }

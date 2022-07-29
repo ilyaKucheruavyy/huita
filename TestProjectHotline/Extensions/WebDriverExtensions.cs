@@ -81,7 +81,7 @@ namespace TestProjectHotline.Extensions
             driver.SwitchTo().Frame(frame);
         }
 
-        public static void UserClicks(this IWebDriver driver, string Identifier)
+        public static void UserClicksWhithJS(this IWebDriver driver, string Identifier)
         {
             IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
             js.ExecuteScript($"var a = document.evaluate(\"{Identifier}\", document).iterateNext(); a.click();");

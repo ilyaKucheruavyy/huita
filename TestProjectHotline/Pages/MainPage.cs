@@ -28,7 +28,7 @@ namespace TestProjectHotline.Pages
 
         public void ClickOnAllCategory()
         {
-            Driver.UserClicks(".//li[contains(@class, 'catalog')]/a");
+            Driver.UserClicksWhithJS(".//li[contains(@class, 'catalog')]/a");
         }
     }
 }

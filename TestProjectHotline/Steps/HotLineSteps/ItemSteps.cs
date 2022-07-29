@@ -24,7 +24,7 @@ namespace TestProjectHotline.Steps.HotLineSteps
         }
 
         [When(@"User add selected product to 'compare'")]
-        public void WhenUserAddProductToCompare()
+        public void WhenUserAddSelectedProductToCompare()
         {
             var itemPage = _driver.GetPage<ItemPage>();
             _driver.WaitForElementToBeDisplayed(itemPage.ItemPageHeader);

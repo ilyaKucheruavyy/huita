@@ -258,8 +258,7 @@ this.FeatureBackground();
  testRunner.When("User waits \'2\' second", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 40
- testRunner.When("User select \'Електронні цигарки\' option from dropdown by dropdown class \'-compare" +
-                        "\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("User select \'Електронні цигарки\' option from dropdown by class \'-compare\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 41
  testRunner.Then("User check that \'IQOS VEEV, Синий (DF001496.00)\' product that added to comparison" +
@@ -383,12 +382,12 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("User_check_\'viewed product\'")]
-        public void User_Check_ViewedProduct()
+        [NUnit.Framework.DescriptionAttribute("User_check_viewed_product")]
+        public void User_Check_Viewed_Product()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User_check_\'viewed product\'", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User_check_viewed_product", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 62
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -418,8 +417,7 @@ this.FeatureBackground();
  testRunner.When("User waits \'3\' second", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 68
- testRunner.When("User select \'Переглянуті товари\' option from dropdown by dropdown class \'-listing" +
-                        "s\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("User select \'Переглянуті товари\' option from dropdown by class \'-listings\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 69
  testRunner.Then("User check that \'IQOS 3 DUO, черный (DK000495.00)\' product that added to personal" +
